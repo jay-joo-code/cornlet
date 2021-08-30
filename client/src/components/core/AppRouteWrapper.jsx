@@ -14,6 +14,7 @@ import Chat from 'src/pages/profile/MyChats/Chat';
 import Chatroom from 'src/pages/profile/MyChats/Chatroom';
 import MyListings from 'src/pages/profile/MyListings';
 import Settings from 'src/pages/profile/Settings';
+import Stats from 'src/pages/stats';
 import TermsConditions from 'src/pages/terms-conditions';
 import MainFooter from '../footers/MainFooter';
 import PrivateRoute from './PrivateRoute';
@@ -26,6 +27,7 @@ const AppRouter = () => (
     <Switch>
       <PrivateRoute exact path="/listing/:id/edit" component={Edit} />
       <Route exact path="/listing/:id" component={Listing} />
+      <Route exact path="/stats" component={Stats} />
       <Route exact path="/env" component={Env} />
       <Route exact path="/new" component={New} />
       <Route exact path="/terms-conditions" component={TermsConditions} />

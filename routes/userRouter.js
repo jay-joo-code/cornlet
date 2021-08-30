@@ -1,13 +1,26 @@
 const userRouter = require('express').Router();
+const Chatroom = require('../models/Chatroom');
 const User = require('./../models/User');
 
 const logUsers = async () => {
-  const users = await User.find();
-  const userCount = users.length;
-  console.log('userCount', userCount);
-}
+  const chatrooms = await Chatroom.find();
+  const uids = chatrooms.reduce((accum, current) => {
+    const uidsToAdd = [];
+    current.uids.forEach((uid) => {
+      if (!accum.includes(uid)) {
+        uidsToAdd.push(uid);
+      }
+    });
+    return [...accum, ...uidsToAdd];
+  }, []);
+  const promises = uids.map(async (uid) => {
+    const user = await User.findOne({ uid });
+    return user && user.email;
+  });
+  const emails = await Promise.all(promises);
+};
 
-// logUsers();
+logUsers();
 
 userRouter.post('/save', async (req, res) => {
   try {

@@ -2,35 +2,6 @@ const listingRouter = require('express').Router();
 const moment = require('moment');
 const Listing = require('./../models/Listing');
 
-const logListings = async () => {
-  const listings = await Listing.find();
-  const totalListings = listings.length;
-  let active = 0;
-  let deleted = 0;
-  let inactive = 0;
-  let totalPrice = 0;
-  listings.forEach((listing) => {
-    totalPrice += listing.price;
-    if (listing.deleted) {
-      deleted += 1;
-    }
-    else if (listing.active) {
-      active += 1;
-    }
-    else {
-      inactive += 1;
-    }
-  });
-  const avgPrice = totalPrice / totalListings;
-  console.log('totalListings', totalListings);
-  console.log('active', active);
-  console.log('inactive', inactive);
-  console.log('deleted', deleted);
-  console.log('avgPrice', avgPrice);
-};
-
-// logListings();
-
 listingRouter.post('/create', async (req, res) => {
   try {
     const result = await new Listing(req.body).save();
