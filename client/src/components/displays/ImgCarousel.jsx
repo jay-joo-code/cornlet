@@ -79,7 +79,7 @@ const ImgCarousel = ({ imgs }) => {
           </ImgContainer>
         ))}
       </Slider>
-      <NavSection hideClone={imgs.length < 4}>
+      {/* <NavSection hideClone={imgs.length < 4}>
         <Slider
           asNavFor={nav1}
           ref={(slider) => setNav2(slider)}
@@ -96,7 +96,7 @@ const ImgCarousel = ({ imgs }) => {
             </NavWrapper>
           ))}
         </Slider>
-      </NavSection>
+      </NavSection> */}
     </Container>
   );
 };
