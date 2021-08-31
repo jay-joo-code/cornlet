@@ -14,13 +14,10 @@ listingRouter.post('/create', async (req, res) => {
 
 listingRouter.get('/', async (req, res) => {
   try {
-    const today = new Date();
-
     // format query
     const {
       uid, active, start, end, sort, minPrice, maxPrice, minToCampus, maxToCampus, page,
     } = req.query;
-    const deletedQuery = { deleted: false };
     const activeQuery = active ? { active } : {};
     const uidQuery = uid ? { 'user.uid': uid } : {};
     const startQuery = start && !end
@@ -28,12 +25,18 @@ listingRouter.get('/', async (req, res) => {
       : {};
     const endQuery = end && !start
       ? { end: { $gte: new Date(end) }, start: { $lt: new Date(end) } }
-      : uid
-        ? {}
-        : { end: { $gte: today.setDate(today.getDate() - 1) } };
+      : {};
+
+    // DEPREC: filter out if start date is before today
+    // : uid
+    //   ? {}
+    //   : { end: { $gte: today.setDate(today.getDate() - 1) } };
+
+    // both start and end filter applied
     const startEndQuery = start && end
       ? { start: { $lte: moment(new Date(start)).endOf('day').toDate() }, end: { $gte: new Date(end) } }
       : {};
+
     const priceQuery = minPrice && maxPrice
       ? { price: { $lte: Number(maxPrice), $gte: Number(minPrice) } }
       : {};
@@ -41,7 +44,7 @@ listingRouter.get('/', async (req, res) => {
       ? { toCampus: { $lte: Number(maxToCampus), $gte: Number(minToCampus) } }
       : {};
     const query = {
-      ...deletedQuery,
+      deleted: false,
       ...activeQuery,
       ...uidQuery,
       ...startQuery,
