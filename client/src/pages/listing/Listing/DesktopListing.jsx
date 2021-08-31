@@ -84,6 +84,7 @@ const ModalButtonContainer = styled(HoriCenter)`
 
 const DesktopListing = ({ 
   listing,
+  searchers,
   signedInUser,
   handleMsgBtnClick,
   open,
@@ -184,6 +185,7 @@ const DesktopListing = ({
                         listing={listing}
                         handleMsgBtnClick={handleMsgBtnClick}
                         signedInUser={signedInUser}
+                        searchers={searchers}
                       />
                     </RightSidePanelContainer>
                   </FlexRow>

@@ -11,11 +11,16 @@ const Container = styled.div`
 const ListingIndex = ({ match }) => {
   const { id } = match.params;
   const [listing, setListing] = useState();
+  const [searchers, setSearchers] = useState([]);
   
   useEffect(() => {
     if (id) {
       api.get(`/listing/${id}`)
         .then((res) => setListing(res.data))
+        .catch((e) => log('ERROR get listing at listing details page', e));
+
+      api.get(`/chatroom/listing/searchers/${id}`)
+        .then((res) => setSearchers(res.data))
         .catch((e) => log('ERROR get listing at listing details page', e));
     }
   }, [id]);
@@ -26,6 +31,7 @@ const ListingIndex = ({ match }) => {
     <Container>
       <Listing
         listing={listing}
+        searchers={searchers}
       />
     </Container>
   );

@@ -3,6 +3,7 @@ import { ReactComponent as LockRaw } from 'src/assets/svgs/lock.svg';
 import Btn from 'src/components/buttons/Btn';
 import Badge from 'src/components/displays/Badge';
 import DetailedAvatar from 'src/components/displays/DetailedAvatar';
+import Searchers from 'src/components/displays/Searchers';
 import Body from 'src/components/fonts/Body';
 import Subheading from 'src/components/fonts/Subheading';
 import { FlexColumn } from 'src/components/layouts/Flex';
@@ -79,7 +80,7 @@ const RestrictedComponent = () => (
   </div>
 )
 
-const RightSidePanel = ({ listing, handleMsgBtnClick, signedInUser }) => {
+const RightSidePanel = ({ listing, handleMsgBtnClick, signedInUser, searchers }) => {
   const { price, displayName, user, cornellOnly, sold } = listing || {};
 
   return (
@@ -111,6 +112,9 @@ const RightSidePanel = ({ listing, handleMsgBtnClick, signedInUser }) => {
             </>
           )
         }
+      </Section>
+      <Section>
+        <Searchers searchers={searchers} />
       </Section>
     </Container>
   )

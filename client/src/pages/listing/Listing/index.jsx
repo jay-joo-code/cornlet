@@ -16,6 +16,7 @@ import InfoBox from 'src/components/displays/InfoBox';
 import Map from 'src/components/displays/Map';
 import PolicyDisclaimer from 'src/components/displays/PolicyDisclaimer';
 import PriceBadge from 'src/components/displays/PriceBadge';
+import Searchers from 'src/components/displays/Searchers';
 import Body from 'src/components/fonts/Body';
 import Heading from 'src/components/fonts/Heading';
 import Subheading from 'src/components/fonts/Subheading';
@@ -187,9 +188,13 @@ const TextSection = styled.div`
 
 export const Fullwidth = styled.div`
   width: 100%;
+`;
+
+const ContactContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 `;
 
 export const MsgBtn = styled.button`
@@ -227,7 +232,7 @@ const ModalButtonContainer = styled(HoriCenter)`
 `;
 
 
-const Listing = ({ listing }) => {
+const Listing = ({ listing, searchers }) => {
   const {
     imgs, addr, price, user, desc, sold, displayName, cornellOnly,
     totalRooms, availRooms, bathrooms, type, toCampus,
@@ -333,6 +338,7 @@ const Listing = ({ listing }) => {
   if (isDesktop) return (
     <DesktopListing
       listing={listing}
+      searchers={searchers}
       signedInUser={signedInUser}
       handleMsgBtnClick={handleMsgBtnClick}
       open={open}
@@ -381,11 +387,14 @@ const Listing = ({ listing }) => {
                         {(!cornellOnly || (cornellOnly && signedInUser && signedInUser.email.split('@')[1] === 'cornell.edu'))
                           ? (
                             <Fullwidth>
-                              <DetailedAvatar
-                                name={displayName || user.name}
-                                src={displayName ? undefined : user.photo}
-                              />
-                              <Btn color="primary" inverted onClick={handleMsgBtnClick}>Message</Btn>
+                              <ContactContainer>
+                                <DetailedAvatar
+                                  name={displayName || user.name}
+                                  src={displayName ? undefined : user.photo}
+                                />
+                                <Btn color="primary" inverted onClick={handleMsgBtnClick}>Message</Btn>
+                              </ContactContainer>
+                              <Searchers searchers={searchers} />
                             </Fullwidth>
                           )
                           : (

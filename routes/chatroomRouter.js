@@ -48,6 +48,21 @@ chatroomRouter.get('/user/:uid', async (req, res) => {
   }
 });
 
+chatroomRouter.get('/listing/searchers/:lid', async (req, res) => {
+  try {
+    const chatrooms = await Chatroom.find({ listing: req.params.lid });
+    const searcherPromises = chatrooms.map(async (chatroom) => {
+      const searcher = await User.findById(chatroom.searcher);
+      return searcher;
+    });
+    const searchers = await Promise.all(searcherPromises);
+    res.send(searchers);
+  }
+  catch (e) {
+    res.status(500).send(e);
+  }
+});
+
 chatroomRouter.get('/:uid/:lid', async (req, res) => {
   try {
     const chatroom = await Chatroom.findOne({ uids: req.params.uid, listing: req.params.lid });
