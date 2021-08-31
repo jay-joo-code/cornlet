@@ -23,6 +23,7 @@ export const Container = styled.div`
   padding: 1rem;
   width: 90vw;
   min-height: 150px;
+  border-radius: 8px;
 
   @media (min-width: ${(props) => props.theme.md}px) {
     width: 500px;

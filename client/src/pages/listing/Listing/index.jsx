@@ -221,6 +221,11 @@ export const ModalContents = styled.div`
   text-align: start;
 `;
 
+const ModalButtonContainer = styled(HoriCenter)`
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+`;
+
 
 const Listing = ({ listing }) => {
   const {
@@ -450,17 +455,13 @@ const Listing = ({ listing }) => {
         heading={`Message ${user.name.split(' ')[0]}`}
       >
         <ModalContents>
-          <Body margin='2rem 0 0 0'>Ask any questions that you want to clarify!</Body>
           <Input
             multiline
             rows={5}
             value={msg}
             onChange={(e) => setMsg(e.target.value)}
           />
-          <PolicyDisclaimer
-            action='sending a message on Cornlet'
-          />
-          <HoriCenter>
+          <ModalButtonContainer>
             <Btn
               color="primary"
               inverted
@@ -468,7 +469,10 @@ const Listing = ({ listing }) => {
             >
               Send Message
             </Btn>
-          </HoriCenter>
+          </ModalButtonContainer>
+          <PolicyDisclaimer
+            action='sending a message on Cornlet'
+          />
         </ModalContents>
       </Modal>
     </div>
