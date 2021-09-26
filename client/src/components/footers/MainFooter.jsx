@@ -78,7 +78,8 @@ const MainFooter = () => {
     <FooterContainer>
     <FlexRow justifySpaceBetween alignCenter>
       <Logo isDark />
-      <Text variant='h5'>Built with ❤️ by <JayLink href='https://www.linkedin.com/in/jay-joo-341191135/' target="_blank">Jay</JayLink></Text>
+      {/* <Text variant='h5'>Built with ❤️ by <JayLink href='https://www.linkedin.com/in/jay-joo-341191135/' target="_blank">Jay</JayLink></Text> */}
+      <Text variant='h5'>Built with ❤️ by Cornell WebDev</Text>
     </FlexRow>
     <FlexRow justifyEnd>
       <FlexColumn alignEnd>
