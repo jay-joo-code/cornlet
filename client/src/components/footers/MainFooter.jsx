@@ -76,23 +76,23 @@ const MainFooter = () => {
 
   return (
     <FooterContainer>
-    <FlexRow justifySpaceBetween alignCenter>
-      <Logo isDark />
-      {/* <Text variant='h5'>Built with ❤️ by <JayLink href='https://www.linkedin.com/in/jay-joo-341191135/' target="_blank">Jay</JayLink></Text> */}
-      <Text variant='h5'>Built with ❤️ by Cornell WebDev</Text>
-    </FlexRow>
-    <FlexRow justifyEnd>
-      <FlexColumn alignEnd>
-        <Space padding='.5rem 0' />
-        <Text variant='h5'>contactcornlet@gmail.com</Text>
-        <Space margin='.1rem 0' />
-        <Text variant='h6'>
-          <StyledLink to='/terms-conditions'>Terms of Service</StyledLink> •
-          <StyledLink to='/privacy-policy'>Privacy Policy</StyledLink> •
-          <StyledLink to='/cookie-policy'>Cookie Policy</StyledLink>
-        </Text>
-      </FlexColumn>
-    </FlexRow>
+      <FlexRow justifySpaceBetween alignCenter>
+        <Logo isDark />
+        {/* <Text variant='h5'>Built with ❤️ by <JayLink href='https://www.linkedin.com/in/jay-joo-341191135/' target="_blank">Jay</JayLink></Text> */}
+        <Text variant='h5'>Built with ❤️ by Jay</Text>
+      </FlexRow>
+      <FlexRow justifyEnd>
+        <FlexColumn alignEnd>
+          <Space padding='.5rem 0' />
+          <Text variant='h5'>contactcornlet@gmail.com</Text>
+          <Space margin='.1rem 0' />
+          <Text variant='h6'>
+            <StyledLink to='/terms-conditions'>Terms of Service</StyledLink> •
+            <StyledLink to='/privacy-policy'>Privacy Policy</StyledLink> •
+            <StyledLink to='/cookie-policy'>Cookie Policy</StyledLink>
+          </Text>
+        </FlexColumn>
+      </FlexRow>
     </FooterContainer>
   );
 };
