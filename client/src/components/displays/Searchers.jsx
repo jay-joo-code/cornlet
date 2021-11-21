@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Body from '../fonts/Body'
 import Text from '../fonts/Text'
 import Avatar from './Avatar'
 
@@ -19,7 +18,7 @@ const Searchers = ({ searchers, isBrief }) => {
     <Container isBrief={isBrief}>
       <AvatarGroup>
         {searchers.slice(0, sliceCount).map((searcher) => (
-          <StyledAvatar key={searcher._id} src={searcher.photo} sm />
+          <StyledAvatar key={searcher._id} src={searcher.photo} sm isLinked={false} />
         ))}
       </AvatarGroup>
       <Text variant='h6' fontWeight={500}>
