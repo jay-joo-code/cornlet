@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Text from '../fonts/Text'
 
 const Container = styled.div`
-  padding: .1rem .4rem;
+  padding: 0.1rem 0.4rem;
   border-radius: 4px;
   display: inline-block;
 
@@ -14,11 +14,9 @@ const Container = styled.div`
 const BadgeV2 = ({ label, color, background }) => {
   return (
     <Container background={background}>
-      <Text
-        variant='h7'
-        color={color}
-        maxLines={1}
-      >{label}</Text>
+      <Text variant='h7' color={color} maxLines={1} fontWeight={700}>
+        {label}
+      </Text>
     </Container>
   )
 }

@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import ListingCard from 'src/components/cards/ListingCard';
-import api from 'src/util/api';
-import log from 'src/util/log';
-import DynCardList from 'src/containers/DynCardList';
-import useRouter from 'src/util/hooks/useRouter';
-import LoadingDots from 'src/components/displays/LoadingDots';
+import React, { useEffect, useState } from 'react';
 import PaginationBtns from 'src/components/buttons/PaginationBtns';
-
-export const Container = styled.div`
-
-`;
-
-export const Center = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
+import ListingCardV2 from 'src/components/cards/ListingCardV2';
+import LoadingDots from 'src/components/displays/LoadingDots';
+import DynCardList from 'src/containers/DynCardList';
+import api from 'src/util/api';
+import useRouter from 'src/util/hooks/useRouter';
+import log from 'src/util/log';
+import styled from 'styled-components';
 
 const Listings = () => {
   const router = useRouter();
@@ -47,7 +37,7 @@ const Listings = () => {
     <Container>
       <DynCardList>
         {listings.map((listing) => (
-          <ListingCard
+          <ListingCardV2
             key={listing._id}
             listing={listing}
           />
@@ -60,5 +50,15 @@ const Listings = () => {
     </Container>
   );
 };
+
+const Container = styled.div`
+
+`;
+
+const Center = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 
 export default Listings;

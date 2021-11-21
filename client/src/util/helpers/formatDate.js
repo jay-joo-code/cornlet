@@ -1,14 +1,12 @@
-import moment from 'moment';
+import moment from 'moment'
 
 const formatDate = (date, isText) => {
-  const d = new Date(date);
+  const d = new Date(date)
   if (isText) {
-    return moment(d).format('MMM D');
+    return moment(d).format('MMM D')
   }
-  else {
-    const dateString = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-    return dateString
-  }
+  const dateString = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+  return dateString
 }
 
-export default formatDate;
+export default formatDate
