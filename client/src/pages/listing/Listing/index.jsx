@@ -310,6 +310,11 @@ const ImgInnerContainer = styled.div`
     margin-right: 2rem;
     height: auto;
   }
+
+  & * {
+    outline: none;
+    overflow: hidden;
+  }
 `
 
 const Content = styled.div`
