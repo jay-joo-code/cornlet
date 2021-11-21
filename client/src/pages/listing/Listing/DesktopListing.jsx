@@ -56,7 +56,7 @@ const DesktopListing = ({
       <MainHeader />
       <Wrapper>
         <Container>
-          <BackHeader label='Go back' fullwidth />
+          <BackHeader label='Go back' />
           {!listing.active || listing.deleted ? (
             <Body>This listing is inactive or has been deleted by the owner.</Body>
           ) : (

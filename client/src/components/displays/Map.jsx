@@ -1,10 +1,10 @@
-import React from 'react';
-import { Circle, GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
-import { compose, withProps } from 'recompose';
-import theme from 'src/theme';
-import Body from '../fonts/Body';
-import { FlexColumn } from '../layouts/Flex';
-import Space from '../layouts/Space';
+import React from 'react'
+import { Circle, GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps'
+import { compose, withProps } from 'recompose'
+import theme from 'src/theme'
+import Body from '../fonts/Body'
+import { FlexColumn } from '../layouts/Flex'
+import Space from '../layouts/Space'
 
 const MapComponent = compose(
   withProps({
@@ -14,37 +14,38 @@ const MapComponent = compose(
     mapElement: <div style={{ height: '100%' }} />,
   }),
   withScriptjs,
-  withGoogleMap,
+  withGoogleMap
 )(({ lat, lng }) => (
   <FlexColumn>
     <GoogleMap
       defaultZoom={16}
       defaultCenter={{ lat, lng }}
-      options={{ mapTypeControl: false, streetViewControl: false }}
-    >
-      <Circle 
+      options={{ mapTypeControl: false, streetViewControl: false }}>
+      <Circle
         defaultCenter={{
           lat: lat,
-          lng: lng
+          lng: lng,
         }}
         radius={200}
         options={{
           strokeColor: theme.brand300,
-          fillColor: theme.brand100
+          fillColor: theme.brand100,
         }}
       />
     </GoogleMap>
   </FlexColumn>
-));
+))
 
 const Map = ({ lat, lng }) => (
   <FlexColumn alignCenter>
     <MapComponent lat={lat} lng={lng} />
     <Space margin='.3rem 0' />
-    <div style={{ padding: '0 1rem' }}>
-      <Body muted sm style={{ marginLeft: '.5rem' }}>The exact location will be provided once you message the host</Body>
+    <div>
+      <Body muted sm style={{ marginLeft: '.5rem' }}>
+        The exact location will be provided once you message the host
+      </Body>
     </div>
   </FlexColumn>
 )
 
-export default Map;
+export default Map
