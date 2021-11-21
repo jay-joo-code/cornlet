@@ -13,9 +13,8 @@ const User = require('./models/User');
 require('dotenv').config();
 
 // MONGODB
-const forceProdDB = true;
+const forceProdDB = false;
 const isProdDb = forceProdDB || (process.env.NODE_ENV === 'production' && process.env.REACT_APP_DB_PROD);
-const dbType = isProdDb ? 'prod' : 'dev';
 const URI = isProdDb ? process.env.REACT_APP_DB_PROD : process.env.REACT_APP_DB_DEV;
 
 mongoose.connect(URI, {
@@ -30,7 +29,7 @@ db.on('error', console.error.bind(console, '*** DB connection error ***'));
 db.on('disconnected', console.error.bind(console, '*** DB disconnected ***'));
 db.on('reconnected', console.error.bind(console, '*** DB reconnected ***'));
 db.once('open', () => {
-  console.log('db connection:', dbType);
+  console.log('db connection:', isProdDb ? 'prod' : 'dev');
 });
 
 // PORT
