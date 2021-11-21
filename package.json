@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development run-p api-dev client-dev",
     "api-dev": "PORT=8081 nodemon app",
     "client-dev": "cd client && npm run-script dev",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "NODE_OPTIONS=--openssl-legacy-provider && NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "lint": "eslint ./routes ./models app.js socket.js ./auth --fix && cd client && npm run lint"
   },
   "dependencies": {
