@@ -1,15 +1,20 @@
 import formatDate from 'src/util/helpers/formatDate'
 
+const numericDate = (dateString) => {
+  const date = new Date(dateString)
+  const month = (date.getMonth() + 1).toString()
+  const day = date.getDate().toString()
+  const monthString = month.length === 1 ? `0${month}` : month
+  const dayString = day.length === 1 ? `0${day}` : day
+  return `${monthString}/${dayString}`
+}
+
 const getDateString = (listing, options = {}) => {
   const { start, end } = listing
   const { isNumeric } = options
 
   if (isNumeric) {
-    const startDate = new Date(start)
-    const endDate = new Date(end)
-    return `${`${startDate.getMonth() + 1}/${startDate.getDate()}`} - ${`${
-      endDate.getMonth() + 1
-    }/${endDate.getDate()}`}, ${endDate.getFullYear()}`
+    return `${numericDate(start)} - ${numericDate(end)}, ${new Date(end).getFullYear()}`
   }
 
   const startYear =
