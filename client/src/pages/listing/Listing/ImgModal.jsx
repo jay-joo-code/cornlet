@@ -31,23 +31,25 @@ const LargeView = styled.div`
 `
 
 const LargeImg = styled.img`
-  height: 50vh;
-  width: 60vw;
+  width: 50vw;
+  height: 60vh;
   border-radius: 20px;
   object-fit: cover;
+  overflow: hidden;
 `
 
 const ScrollView = styled.div`
   overflow-y: auto;
-  height: 50vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   padding-right: 1.5rem;
 `
 
 const ThumbnailImg = styled.img`
-  height: 10vh;
+  height: 15vh;
   width: 10vw;
+  overflow: hidden;
   border-radius: 10px;
   object-fit: cover;
   margin-bottom: 1rem;
