@@ -48,6 +48,7 @@ const ScrollView = styled.div`
 
 const ThumbnailImg = styled.img`
   height: 15vh;
+  flex-shrink: 0;
   width: 10vw;
   overflow: hidden;
   border-radius: 10px;
