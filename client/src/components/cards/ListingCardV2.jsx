@@ -59,7 +59,7 @@ const ListingCardV2 = ({ listing }) => {
             <FlexRow justifySpaceBetween fullWidth>
               <StatsContainer>
                 <Text variant='h5' muted>
-                  {getFromNowDate(listing.updatedAt)}
+                  Updated {getFromNowDate(listing.updatedAt)}
                 </Text>
               </StatsContainer>
               <Price>
