@@ -5,10 +5,15 @@ import api from 'src/util/api'
 import log from 'src/util/log'
 import { ReactComponent as BmUnfilledRaw } from 'src/assets/svgs/bookmark.svg'
 import { ReactComponent as BmFilledRaw } from 'src/assets/svgs/bookmark-filled.svg'
+import { ReactComponent as UnfilledBmIcon } from 'src/assets/svgs/bookmark.svg'
+import { ReactComponent as FilledBmIcon } from 'src/assets/svgs/bookmark-filled.svg'
+import ClickableIcon from '../displays/ClickableIcon'
+import useIsDesktop from 'src/util/hooks/useIsDesktop'
 
-const BmBtn = ({ listing }) => {
+const BmBtn = ({ listing, forceDesktopSize }) => {
   const bm = useSelector((state) => state.bm)
   const user = useSelector((state) => state.user)
+  const isDesktop = useIsDesktop()
 
   let isBmed = false
   if (user) {
@@ -58,43 +63,55 @@ const BmBtn = ({ listing }) => {
     }
   }
 
-  return <Container onClick={toggleBm}>{isBmed ? <BmFilled /> : <BmUnfilled />}</Container>
+  return (
+    <Container onClick={toggleBm}>
+      {isBmed ? (
+        <ClickableIcon size={isDesktop || forceDesktopSize ? undefined : '24px'}>
+          <StyledFilledBmIcon forceDesktopSize={forceDesktopSize} />
+        </ClickableIcon>
+      ) : (
+        <ClickableIcon size={isDesktop || forceDesktopSize ? undefined : '24px'}>
+          <StyledUnfilledBmIcon forceDesktopSize={forceDesktopSize} />
+        </ClickableIcon>
+      )}
+    </Container>
+  )
 }
 
 const Container = styled.div`
-  background: white;
-  padding: 0.3rem;
   border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   z-index: 99;
 `
 
-const BmFilled = styled(BmFilledRaw)`
-  display: block;
-  fill: white;
+const StyledUnfilledBmIcon = styled(UnfilledBmIcon)`
   height: 1rem;
   width: 1rem;
-  overflow: visible !important;
-  opacity: 0.9;
-  fill: ${(props) => props.theme.primary};
+  cursor: pointer;
+
+  /* forceDesktopSize */
+  height: ${(props) => props.forceDesktopSize && '1.5rem'};
+  width: ${(props) => props.forceDesktopSize && '1.5rem'};
 
   @media (min-width: ${(props) => props.theme.md}px) {
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 1.5rem;
+    width: 1.5rem;
   }
 `
 
-const BmUnfilled = styled(BmUnfilledRaw)`
-  display: block;
+const StyledFilledBmIcon = styled(FilledBmIcon)`
   height: 1rem;
   width: 1rem;
-  overflow: visible !important;
-  opacity: 0.6;
+  cursor: pointer;
+  fill: ${(props) => props.theme.brand500};
+
+  /* forceDesktopSize */
+  height: ${(props) => props.forceDesktopSize && '1.5rem'};
+  width: ${(props) => props.forceDesktopSize && '1.5rem'};
 
   @media (min-width: ${(props) => props.theme.md}px) {
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 1.5rem;
+    width: 1.5rem;
   }
 `
 

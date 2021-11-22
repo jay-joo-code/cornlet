@@ -177,7 +177,7 @@ const Listing = ({ listing, searchers }) => {
                 <Section>
                   <Row>
                     <Heading>{formatListingDesc(listing)}</Heading>
-                    <BmBtn listing={listing} />
+                    <BmBtn listing={listing} forceDesktopSize />
                   </Row>
                   <Space margin='2rem 0' />
                   <Row>
