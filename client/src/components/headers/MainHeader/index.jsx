@@ -27,12 +27,8 @@ const MainHeader = () => {
               <ButtonText>Create listing</ButtonText>
             </Btn>
           </Link>
-          <ClickableIcon>
-            <Chat />
-          </ClickableIcon>
-          <ClickableIcon>
-            <Bookmarks />
-          </ClickableIcon>
+          <Chat />
+          <Bookmarks />
           <Auth border />
         </Right>
       ) : (

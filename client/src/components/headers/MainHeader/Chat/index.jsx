@@ -5,6 +5,7 @@ import { ReactComponent as ChatIcon } from 'src/assets/svgs/mail.svg'
 import CornerRedDot from 'src/components/displays/CornerRedDot'
 import { Link } from 'react-router-dom'
 import Body from 'src/components/fonts/Body'
+import ClickableIcon from 'src/components/displays/ClickableIcon'
 
 const Chat = () => {
   const chatrooms = useSelector((state) => state.chatrooms)
@@ -20,10 +21,12 @@ const Chat = () => {
 
   return (
     <Link to='/profile/chat'>
-      <Container>
-        <StyledChatIcon />
-        {hasNotif && <CornerRedDot />}
-      </Container>
+      <ClickableIcon>
+        <Container>
+          <StyledChatIcon />
+          {hasNotif && <CornerRedDot />}
+        </Container>
+      </ClickableIcon>
     </Link>
   )
 }
