@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ClickableIcon = ({ children }) => {
-  return <Container>{children}</Container>
+const ClickableIcon = ({ size, children }) => {
+  return <Container size={size}>{children}</Container>
 }
 
 const Container = styled.div`
@@ -23,6 +23,10 @@ const Container = styled.div`
   &:hover {
     background: ${(props) => props.theme.grey[300]};
   }
+
+  /* size */
+  height: ${(props) => props.size && props.size};
+  width: ${(props) => props.size && props.size};
 `
 
 export default ClickableIcon
