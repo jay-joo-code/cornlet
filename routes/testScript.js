@@ -1,6 +1,3 @@
-
-const testScript = async () => {
-
-};
+const testScript = async () => {};
 
 module.exports = testScript;

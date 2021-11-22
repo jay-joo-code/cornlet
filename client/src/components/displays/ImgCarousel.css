@@ -2,16 +2,14 @@
   left: 3%;
   z-index: 10;
   display: none !important;
-  
-  @media (min-width: 768px) {
-    display: block !important;
-  }
 }
 .slick-next {
   right: 3%;
   display: none !important;
-  
-  @media (min-width: 768px) {
+}
+
+@media (min-width: 768px) {
+  .slick-next .slick-prev {
     display: block !important;
   }
 }

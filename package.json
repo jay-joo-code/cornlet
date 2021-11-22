@@ -1,5 +1,5 @@
 {
-  "name": "chopsticks",
+  "name": "cornlet",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,14 +7,14 @@
     "dev": "NODE_ENV=development run-p api-dev client-dev",
     "api-dev": "PORT=8081 nodemon app",
     "client-dev": "cd client && npm run-script dev",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "NODE_OPTIONS=--openssl-legacy-provider && NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "lint": "eslint ./routes ./models app.js socket.js ./auth --fix && cd client && npm run lint"
   },
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@tinymce/tinymce-react": "^3.3.2",
     "axios": "^0.19.2",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "bootpay-js": "^3.1.1",
     "cheerio": "^1.0.0-rc.3",
@@ -49,12 +49,13 @@
     "use-persisted-state": "^0.3.0"
   },
   "engines": {
-    "npm": "6.9.0",
-    "node": "10.16.3"
+    "npm": "8.1.0",
+    "node": "17.0.1"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "prettier": "2.4.1"
   }
 }

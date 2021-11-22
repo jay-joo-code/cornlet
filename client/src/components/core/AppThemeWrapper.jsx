@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import theme from 'src/theme';
 import AppReduxWrapper from './AppReduxWrapper';
 
-import 'src/theme/Normalise.scss';
+import 'src/theme/Normalise.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const Wrapper = styled.div`
