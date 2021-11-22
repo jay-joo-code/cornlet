@@ -1,65 +1,76 @@
-import React from 'react';
-import styled from 'styled-components';
-import Btn from 'src/components/buttons/Btn';
-import { Link } from 'react-router-dom';
-import Auth from 'src/components/buttons/Auth';
-import Logo from 'src/components/displays/Logo';
-import useIsDesktop from 'src/util/hooks/useIsDesktop';
+import React from 'react'
+import styled from 'styled-components'
+import Btn from 'src/components/buttons/Btn'
+import { Link } from 'react-router-dom'
+import Auth from 'src/components/buttons/Auth'
+import Logo from 'src/components/displays/Logo'
+import useIsDesktop from 'src/util/hooks/useIsDesktop'
+import Bookmarks from './Bookmarks'
+import Chat from './Chat'
+import MobileNav from './MobileNav'
+import { ReactComponent as PlusIcon } from 'src/assets/svgs/plus.svg'
+import ClickableIcon from 'src/components/displays/ClickableIcon'
 
-import Bookmarks from './Bookmarks';
-import Chat from './Chat';
-import MobileNav from './MobileNav';
+const MainHeader = () => {
+  const isDesktop = useIsDesktop()
+
+  return (
+    <Container>
+      <Link to='/'>
+        <Logo />
+      </Link>
+      {isDesktop ? (
+        <Right>
+          <Link to='/new'>
+            <Btn color='primary' inverted>
+              <StyledPlusIcon />
+              <ButtonText>Create listing</ButtonText>
+            </Btn>
+          </Link>
+          <ClickableIcon>
+            <Chat />
+          </ClickableIcon>
+          <ClickableIcon>
+            <Bookmarks />
+          </ClickableIcon>
+          <Auth border />
+        </Right>
+      ) : (
+        <MobileNav />
+      )}
+    </Container>
+  )
+}
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   position: relative;
-  
+
   @media (min-width: ${(props) => props.theme.md}px) {
     padding-left: 0;
     padding-right: 0;
   }
-`;
+`
 
 const Right = styled.div`
   display: flex;
   align-items: center;
-  
+
   & > * {
     margin-left: 1rem;
   }
-`;
+`
 
-const MainHeader = () => {
-  const isDesktop = useIsDesktop();
+const StyledPlusIcon = styled(PlusIcon)`
+  fill: #fff;
+`
 
-  return (
-    <Container>
-      <Link to="/">
-        <Logo />
-      </Link>
-      {isDesktop
-        ? (
-          <Right>
-            <Link to="/new">
-              <Btn
-                color="primary"
-                inverted
-              >
-                +   New Listing
-              </Btn>
-            </Link>
-            <Chat />
-            <Auth border />
-            <Bookmarks />
-          </Right>
-        )
-        : <MobileNav />
-      }
-    </Container>
-  );
-};
+const ButtonText = styled.p`
+  margin-left: 0.2rem;
+  line-height: 1.5;
+`
 
-export default MainHeader;
+export default MainHeader
