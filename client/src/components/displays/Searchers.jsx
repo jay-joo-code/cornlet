@@ -21,9 +21,9 @@ const Searchers = ({ searchers, isBrief }) => {
           <StyledAvatar key={searcher._id} src={searcher.photo} sm isLinked={false} />
         ))}
       </AvatarGroup>
-      <Text variant='h6' fontWeight={500}>
+      <StyledText variant='h6' fontWeight={500}>
         {text}
-      </Text>
+      </StyledText>
     </Container>
   )
 }
@@ -50,6 +50,12 @@ const AvatarGroup = styled.div`
 
 const StyledAvatar = styled(Avatar)`
   border: 2px solid white;
+`
+
+const StyledText = styled(Text)`
+  @media (min-width: ${(props) => props.theme.md}px) {
+    font-size: 14px;
+  }
 `
 
 export default Searchers

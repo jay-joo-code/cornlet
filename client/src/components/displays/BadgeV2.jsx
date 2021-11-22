@@ -23,7 +23,7 @@ const Container = styled.div`
 
 const BadgeText = styled(Text)`
   @media (min-width: ${(props) => props.theme.md}px) {
-    font-size: 12px;
+    font-size: 13px;
   }
 `
 

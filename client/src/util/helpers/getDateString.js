@@ -6,7 +6,7 @@ const numericDate = (dateString) => {
   const day = date.getDate().toString()
   const monthString = month.length === 1 ? `0${month}` : month
   const dayString = day.length === 1 ? `0${day}` : day
-  return `${monthString}/${dayString}`
+  return `${monthString}/${dayString}/${date.getFullYear()}`
 }
 
 const getDateString = (listing, options = {}) => {
@@ -14,7 +14,7 @@ const getDateString = (listing, options = {}) => {
   const { isNumeric } = options
 
   if (isNumeric) {
-    return `${numericDate(start)} - ${numericDate(end)}, ${new Date(end).getFullYear()}`
+    return `${numericDate(start)} - ${numericDate(end)}`
   }
 
   const startYear =
