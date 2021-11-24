@@ -7,19 +7,32 @@ import api from 'src/util/api'
 import formatListingDesc from 'src/util/helpers/formatListingDesc'
 import getDateString from 'src/util/helpers/getDateString'
 import getFromNowDate from 'src/util/helpers/getFromNowDate'
+import getRegion from 'src/util/helpers/getRegion'
 import styled from 'styled-components'
 import BadgeV2 from '../displays/BadgeV2'
 import Searchers from '../displays/Searchers'
 import Body from '../fonts/Body'
 import Text from '../fonts/Text'
 import { FlexRow } from '../layouts/Flex'
+import getMinutesFromCampus from 'src/util/helpers/getMinutesFromCampus'
+import useIsDesktop from 'src/util/hooks/useIsDesktop'
 
 const ListingCardV2 = ({ listing }) => {
   const [searchers, setSearchers] = useState([])
+  const [region, setRegion] = useState({})
+  const isDesktop = useIsDesktop()
 
   useEffect(() => {
     if (listing._id) {
-      api.get(`/chatroom/listing/searchers/${listing._id}`).then((res) => setSearchers(res.data))
+      api.get(`/chatroom/listing/searchers/${listing._id}`).then((res) => {
+        setSearchers(res.data)
+        setRegion(
+          getRegion({
+            lat: listing.lat,
+            lng: listing.lng,
+          })
+        )
+      })
     }
   }, [listing._id])
 
@@ -36,9 +49,10 @@ const ListingCardV2 = ({ listing }) => {
           <Space margin='0 .5rem' />
           <TextContainer>
             <div>
-              <Overline style={{ marginBottom: '.4rem' }}>
-                {listing.sold ? 'Not available' : `${listing.availRooms} bedrooms`}
-              </Overline>
+              <OverlineContainer>
+                <BadgeV2 color={region.color} background={region.background} label={region.label} />
+                <Overline>• {getMinutesFromCampus(listing.toCampus)} mins from campus</Overline>
+              </OverlineContainer>
               <Title>{formatListingDesc(listing)}</Title>
               <Space padding='.3rem 0' />
               <div>
@@ -46,8 +60,8 @@ const ListingCardV2 = ({ listing }) => {
                   <BadgeV2 color={theme.brand} background={theme.brand50} label='Sold' />
                 ) : (
                   <BadgeV2
-                    color={theme.brand}
-                    background={theme.brand50}
+                    color={theme.text}
+                    background={theme.grey[100]}
                     label={getDateString(listing, { isNumeric: true })}
                   />
                 )}
@@ -157,15 +171,22 @@ const Title = styled.h3`
   }
 `
 
-const Overline = styled.p`
-  white-space: nowrap;
-  flex-grow: 0;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-size: 0.8rem;
+const OverlineContainer = styled.div`
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+`
+
+const Overline = styled.span`
+  display: none;
+  margin-left: 0.5rem;
+  color: ${(props) => props.theme.textMuted};
   font-weight: 500;
-  text-transform: uppercase;
-  opacity: 0.7;
+  font-size: 0.9rem;
+
+  @media (min-width: ${(props) => props.theme.md}px) {
+    display: inline-block;
+  }
 `
 
 const SearchersContainer = styled.div`

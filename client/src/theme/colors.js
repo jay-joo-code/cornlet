@@ -15,7 +15,16 @@ const palette = {
 
 const theme = {
   ...palette,
-  
+
+  // region
+  collegetown: '#66C088',
+  collegetownBg: '#E6F5EB',
+  west: '#0275d8',
+  westBg: '#D5E8F9',
+  north: '#F0AD4E',
+  northBg: '#FDF1E2',
+
+  // state feedback
   success: '#66c088',
   primary: '#B31B1B',
   primaryLight: '#d17676',
@@ -47,6 +56,6 @@ const theme = {
     light: '#E2E2E3',
     dark: '#C6C6C7',
   },
-};
+}
 
 export default theme
