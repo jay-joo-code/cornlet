@@ -6,7 +6,7 @@ const numericDate = (dateString) => {
   const day = date.getDate().toString()
   const monthString = month.length === 1 ? `0${month}` : month
   const dayString = day.length === 1 ? `0${day}` : day
-  return `${monthString}/${dayString}/${date.getFullYear()}`
+  return `${date.getFullYear()}/${monthString}/${dayString}`
 }
 
 const getDateString = (listing, options = {}) => {
