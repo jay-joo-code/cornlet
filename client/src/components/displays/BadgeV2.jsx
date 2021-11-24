@@ -5,7 +5,7 @@ import Text from '../fonts/Text'
 const BadgeV2 = ({ label, color, background }) => {
   return (
     <Container background={background}>
-      <BadgeText variant='h7' color={color} maxLines={1} fontWeight={700}>
+      <BadgeText variant='h6' color={color} maxLines={1} fontWeight={700}>
         {label}
       </BadgeText>
     </Container>
@@ -23,7 +23,7 @@ const Container = styled.div`
 
 const BadgeText = styled(Text)`
   @media (min-width: ${(props) => props.theme.md}px) {
-    font-size: 13px;
+    font-size: 14px;
   }
 `
 
