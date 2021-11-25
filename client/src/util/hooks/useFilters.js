@@ -18,6 +18,7 @@ const useFilters = () => {
 
   if (start) {
     const filter = {
+      type: 'date',
       text: `Starts ${getNumericDate(start)}`,
       cb: () => removeFilters(['start']),
     }
@@ -26,6 +27,7 @@ const useFilters = () => {
 
   if (end) {
     const filter = {
+      type: 'date',
       text: `Ends ${getNumericDate(end)}`,
       cb: () => removeFilters(['end']),
     }
@@ -34,6 +36,7 @@ const useFilters = () => {
 
   if (minToCampus && maxToCampus) {
     const filter = {
+      type: 'distance',
       text: `From campus: ${minToCampus} mins - ${maxToCampus} mins`,
       cb: () => removeFilters(['minToCampus', 'maxToCampus']),
     }
@@ -42,6 +45,7 @@ const useFilters = () => {
 
   if (minPrice && maxPrice) {
     const filter = {
+      type: 'price',
       text: `Price: $${minPrice} - $${maxPrice}`,
       cb: () => removeFilters(['minPrice', 'maxPrice']),
     }
