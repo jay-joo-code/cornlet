@@ -1,24 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react'
 
 const useOnOutsideClick = (ref, handler) => {
   useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
     const handleClickOutside = (event) => {
-      event.stopPropagation();
       if (ref.current && !ref.current.contains(event.target)) {
+        event.stopPropagation()
+        event.stopImmediatePropagation()
+        event.preventDefault()
         handler()
       }
     }
 
-    // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
+
     return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [ref])
 }
 
-export default useOnOutsideClick;
+export default useOnOutsideClick

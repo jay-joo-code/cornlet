@@ -1,50 +1,55 @@
-import useRouter from "./useRouter";
+import getNumericDate from '../helpers/getNumericDate'
+import useRouter from './useRouter'
 
 const useFilters = () => {
-  const router = useRouter();
-  const { query, updateQuery } = router;
-  const { minToCampus, maxToCampus, minPrice, maxPrice, start, end } = query;
+  const router = useRouter()
+  const { query, updateQuery } = router
+  const { minToCampus, maxToCampus, minPrice, maxPrice, start, end } = query
 
-  const filters = [];
+  const filters = []
 
   const removeFilters = (removedFilters) => {
-    const data = {};
+    const data = {}
     removedFilters.forEach((filter) => {
       data[filter] = undefined
     })
-    updateQuery(data);
+    updateQuery(data)
   }
 
   if (start) {
     const filter = {
-      text: `Start: ${start}`,
+      type: 'date',
+      text: `Starts ${getNumericDate(start)}`,
       cb: () => removeFilters(['start']),
     }
-    filters.push(filter);
+    filters.push(filter)
   }
 
   if (end) {
     const filter = {
-      text: `End: ${end}`,
+      type: 'date',
+      text: `Ends ${getNumericDate(end)}`,
       cb: () => removeFilters(['end']),
     }
-    filters.push(filter);
+    filters.push(filter)
   }
-  
+
   if (minToCampus && maxToCampus) {
     const filter = {
-      text: `Distance: ${minToCampus} km - ${maxToCampus} km`,
+      type: 'distance',
+      text: `From campus: ${minToCampus} mins - ${maxToCampus} mins`,
       cb: () => removeFilters(['minToCampus', 'maxToCampus']),
     }
-    filters.push(filter);
+    filters.push(filter)
   }
 
   if (minPrice && maxPrice) {
     const filter = {
+      type: 'price',
       text: `Price: $${minPrice} - $${maxPrice}`,
       cb: () => removeFilters(['minPrice', 'maxPrice']),
     }
-    filters.push(filter);
+    filters.push(filter)
   }
 
   return filters

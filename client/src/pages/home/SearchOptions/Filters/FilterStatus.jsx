@@ -1,11 +1,32 @@
-import React from 'react';
-import { ReactComponent as CloseRaw } from 'src/assets/svgs/close.svg';
-import InvertedBtn from 'src/components/buttons/InvertedBtn';
-import IconContainer from 'src/components/displays/IconContainer';
-import Space from 'src/components/layouts/Space';
-import useFilters from 'src/util/hooks/useFilters';
-import useIsDesktop from 'src/util/hooks/useIsDesktop';
-import styled from 'styled-components';
+import React from 'react'
+import { ReactComponent as CloseRaw } from 'src/assets/svgs/close.svg'
+import InvertedBtn from 'src/components/buttons/InvertedBtn'
+import IconContainer from 'src/components/displays/IconContainer'
+import Space from 'src/components/layouts/Space'
+import useFilters from 'src/util/hooks/useFilters'
+import useIsDesktop from 'src/util/hooks/useIsDesktop'
+import styled from 'styled-components'
+
+const FilterStatus = () => {
+  const filters = useFilters()
+
+  const isDesktop = useIsDesktop()
+  if (!isDesktop) return null
+
+  return (
+    <Container>
+      {filters.map(({ text, cb }) => (
+        <StatusBadge color='primary'>
+          <BadgeText>{text}</BadgeText>
+          <Space margin='0 .2rem' />
+          <IconContainer padding='.5rem'>
+            <CloseSVG onClick={() => cb()} />
+          </IconContainer>
+        </StatusBadge>
+      ))}
+    </Container>
+  )
+}
 
 const Container = styled.div`
   display: flex;
@@ -16,46 +37,29 @@ const Container = styled.div`
     flex-shrink: 0;
     white-space: nowrap;
   }
-`;
+`
 
-const StatusBadge = styled(InvertedBtn)`
-  cursor: initial;
-  border: 2px solid ${props => props.theme.brand300};
+const StatusBadge = styled.div`
+  border: 2px solid ${(props) => props.theme.brand300};
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .2rem .2rem .2rem .5rem;
-  color: ${props => props.theme.brand};
+  padding: 0.2rem 0.2rem 0.2rem 0.8rem;
 `
 
-export const CloseSVG = styled(CloseRaw)`
-  height: .7rem;
-  width: .7rem;
-  fill: ${props => props.theme.primary};
+const BadgeText = styled.p`
+  font-weight: 500;
+  color: ${(props) => props.theme.brand};
+  font-size: 0.9rem;
+  padding-top: 0.1rem;
+`
+
+const CloseSVG = styled(CloseRaw)`
+  height: 0.7rem;
+  width: 0.7rem;
+  fill: ${(props) => props.theme.primary};
   cursor: pointer;
-`;
+`
 
-const FilterStatus = () => {
-  const filters = useFilters()
-  
-  const isDesktop = useIsDesktop()
-  if (!isDesktop) return null;
-
-  return (
-    <Container>
-      {filters.map(({ text, cb }) => (
-        <StatusBadge
-          color='primary'
-        >
-          {text}
-          <Space margin='0 .2rem' />
-          <IconContainer padding='.5rem'>
-            <CloseSVG onClick={() => cb()} />
-          </IconContainer>
-        </StatusBadge>
-      ))}
-    </Container>
-  )
-};
-
-export default FilterStatus;
+export default FilterStatus
