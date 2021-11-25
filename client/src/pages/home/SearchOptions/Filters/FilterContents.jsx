@@ -16,6 +16,7 @@ const FilterContents = ({ setShow }) => {
 
   const clearFilters = () => {
     router.updateQuery({}, true)
+    setShow(false)
   }
 
   return (
