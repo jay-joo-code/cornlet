@@ -29,7 +29,7 @@ const FilterContents = ({ setShow }) => {
         <Body>to</Body>
         <DateFilter name='end' placeholder='End' />
       </Row>
-      <Space margin='1.5rem 0' />
+      <Space margin='2.5rem 0' />
       <Text variant='h5' fontWeight={500}>
         Price
       </Text>
@@ -41,12 +41,19 @@ const FilterContents = ({ setShow }) => {
         startLabel='$0'
         endLabel='$2000'
       />
-      <Space margin='1rem 0' />
+      <Space margin='2rem 0' />
       <Text variant='h5' fontWeight={500}>
-        Distance to Campus (km)
+        Minutes from campus
       </Text>
-      <SliderFilter startName='minToCampus' endName='maxToCampus' max={2} step={0.2} />
-      <Space margin='1rem 0' />
+      <SliderFilter
+        startName='minToCampus'
+        endName='maxToCampus'
+        max={30}
+        step={2}
+        startLabel='0 mins'
+        endLabel='30 mins'
+      />
+      <Space margin='2rem 0' />
       <FlexRow alignCenter justifyEnd>
         <TextBtn colorHex={theme.grey[600]} onClick={clearFilters}>
           Clear

@@ -34,7 +34,7 @@ const useFilters = () => {
 
   if (minToCampus && maxToCampus) {
     const filter = {
-      text: `Distance: ${minToCampus} km - ${maxToCampus} km`,
+      text: `From campus: ${minToCampus} mins - ${maxToCampus} mins`,
       cb: () => removeFilters(['minToCampus', 'maxToCampus']),
     }
     filters.push(filter)

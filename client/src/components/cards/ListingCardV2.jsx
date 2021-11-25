@@ -14,7 +14,7 @@ import Searchers from '../displays/Searchers'
 import Body from '../fonts/Body'
 import Text from '../fonts/Text'
 import { FlexRow } from '../layouts/Flex'
-import getMinutesFromCampus from 'src/util/helpers/getMinutesFromCampus'
+import kmToMins from 'src/util/helpers/kmToMins'
 import useIsDesktop from 'src/util/hooks/useIsDesktop'
 
 const ListingCardV2 = ({ listing }) => {
@@ -51,7 +51,7 @@ const ListingCardV2 = ({ listing }) => {
             <div>
               <OverlineContainer>
                 <BadgeV2 color={region.color} background={region.background} label={region.label} />
-                <Overline>• {getMinutesFromCampus(listing.toCampus)} mins from campus</Overline>
+                <Overline>• {kmToMins(listing.toCampus)} mins from campus</Overline>
               </OverlineContainer>
               <Title>{formatListingDesc(listing)}</Title>
               <Space padding='.3rem 0' />
