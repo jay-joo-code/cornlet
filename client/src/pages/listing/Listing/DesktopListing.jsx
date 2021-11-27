@@ -1,4 +1,5 @@
 import React from 'react'
+import kmToMins from 'src/util/helpers/kmToMins'
 import BmBtn from 'src/components/buttons/BmBtn'
 import Btn from 'src/components/buttons/Btn'
 import InfoBox from 'src/components/displays/InfoBox'
@@ -87,7 +88,7 @@ const DesktopListing = ({
                   <Section>
                     <Subheading bold>Location</Subheading>
                     <Space margin='1.5rem 0' />
-                    {toCampus && <Body>{toCampus} km to campus</Body>}
+                    {toCampus && <Body>{kmToMins(toCampus)} mins from campus</Body>}
                     <Space margin='1.5rem 0' />
                     {lat && lng && (
                       <div>
@@ -102,25 +103,6 @@ const DesktopListing = ({
                     <Space margin='1.5rem 0' />
                     <Body lineHeight={1.5}>{desc}</Body>
                   </Section>
-                  {/* {availAmenities.length > 0
-                      && (
-                      <Section>
-                        <Row><Subheading bold>Amenities</Subheading></Row>
-                        <Row>
-                          <AmenitiesList>
-                            {availAmenities.map((amenity) => (
-                              <AmenityGrp
-                                key={amenity.value}
-                                count={amenity.count}
-                                icon={amenity.icon}
-                                label={amenity.label}
-                                active
-                              />
-                            ))}
-                          </AmenitiesList>
-                        </Row>
-                      </Section>
-                      )} */}
                 </Content>
                 <RightSidePanelContainer>
                   <RightSidePanel
