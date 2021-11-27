@@ -22,6 +22,7 @@ import Modal from 'src/components/views/Modal'
 import HoriCenter from 'src/containers/HoriCenter'
 import api from 'src/util/api'
 import formatListingDesc from 'src/util/helpers/formatListingDesc'
+import kmToMins from 'src/util/helpers/kmToMins'
 import signin from 'src/util/helpers/signin'
 import useIsDesktop from 'src/util/hooks/useIsDesktop'
 import useRouter from 'src/util/hooks/useRouter'
@@ -236,21 +237,14 @@ const Listing = ({ listing, searchers }) => {
                   </Section>
                 )}
 
-                <Section>
-                  <Row marginBottomLarge>
-                    <Subheading bold>Description</Subheading>
-                  </Row>
-                  <Row marginTopLarge marginBottom>
-                    <Body lineHeight={1.5}>{desc}</Body>
-                  </Row>
-                </Section>
+                {/* location */}
                 <Section>
                   <Row marginBottom>
                     <Subheading bold>Location</Subheading>
                   </Row>
                   {toCampus && (
                     <Row>
-                      <Body>{toCampus} km to campus</Body>
+                      <Body>{kmToMins(toCampus)} mins from campus</Body>
                     </Row>
                   )}
                   <Row marginBottom />
@@ -259,6 +253,16 @@ const Listing = ({ listing, searchers }) => {
                       <Map lat={lat} lng={lng} />
                     </MapContainer>
                   )}
+                </Section>
+
+                {/* description */}
+                <Section>
+                  <Row marginBottomLarge>
+                    <Subheading bold>Description</Subheading>
+                  </Row>
+                  <Row marginTopLarge marginBottom>
+                    <Body lineHeight={1.5}>{desc}</Body>
+                  </Row>
                 </Section>
                 <Space margin='2rem 0' />
               </Content>
