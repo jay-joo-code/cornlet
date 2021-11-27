@@ -207,7 +207,7 @@ const Listing = ({ listing, searchers }) => {
                               Message
                             </Btn>
                           </ContactContainer>
-                          <Searchers searchers={searchers} />
+                          <Searchers searchers={searchers} isLarge />
                         </Fullwidth>
                       ) : (
                         <LockSection>
