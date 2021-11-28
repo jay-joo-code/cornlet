@@ -26,14 +26,18 @@ const ListingCardV2 = ({ listing }) => {
   const filters = useFilters()
 
   useEffect(() => {
+    let hasDistance = false
     filters.forEach(({ type }) => {
-      console.log('type', type)
       if (type === 'distance') {
-        setIsDistanceFiltered(true)
-      } else {
-        setIsDistanceFiltered(false)
+        hasDistance = true
       }
     })
+
+    if (hasDistance) {
+      setIsDistanceFiltered(true)
+    } else {
+      setIsDistanceFiltered(false)
+    }
   }, [filters])
 
   useEffect(() => {

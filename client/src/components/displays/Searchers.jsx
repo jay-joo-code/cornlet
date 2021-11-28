@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Text from '../fonts/Text'
 import Avatar from './Avatar'
 
-const Searchers = ({ searchers, isBrief }) => {
+const Searchers = ({ searchers, isBrief, isLarge }) => {
   if (!searchers || searchers.length === 0) return null
 
   const text = isBrief
@@ -21,7 +21,7 @@ const Searchers = ({ searchers, isBrief }) => {
           <StyledAvatar key={searcher._id} src={searcher.photo} sm isLinked={false} />
         ))}
       </AvatarGroup>
-      <StyledText variant='h6' fontWeight={500}>
+      <StyledText variant={isLarge ? 'h5' : 'h6'} fontWeight={500}>
         {text}
       </StyledText>
     </Container>
