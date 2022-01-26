@@ -28,6 +28,10 @@ listingRouter.get("/", async (req, res) => {
       page,
     } = req.query;
     const activeQuery = active ? { active } : {};
+    const soldQuery =
+      !uid && typeof sort !== "undefined" && sort !== "recent"
+        ? { sold: false }
+        : {};
     const uidQuery = uid ? { "user.uid": uid } : {};
     const startQuery =
       start && !end
@@ -78,6 +82,7 @@ listingRouter.get("/", async (req, res) => {
       ...startEndQuery,
       ...priceQuery,
       ...toCampusQuery,
+      ...soldQuery,
     };
 
     // sort
