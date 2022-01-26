@@ -5,7 +5,7 @@ import useIsDesktop from 'src/util/hooks/useIsDesktop'
 import styled from 'styled-components'
 import BadgeV2 from '../displays/BadgeV2'
 
-const ListingLocation = ({ lat, lng, toCampus }) => {
+const ListingLocation = ({ lat, lng, toCampus, isShowMins = true }) => {
   const [region, setRegion] = useState({})
   const isDesktop = useIsDesktop()
 
@@ -25,7 +25,7 @@ const ListingLocation = ({ lat, lng, toCampus }) => {
   return (
     <Container>
       <BadgeV2 color={region.color} background={region.background} label={region.label} />
-      {isDesktop && <Overline>• {kmToMins(toCampus)} mins from campus</Overline>}
+      {isShowMins && <Overline>• {kmToMins(toCampus)} mins from campus</Overline>}
     </Container>
   )
 }

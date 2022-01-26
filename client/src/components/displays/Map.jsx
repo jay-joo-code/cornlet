@@ -2,6 +2,7 @@ import React from 'react'
 import { Circle, GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps'
 import { compose, withProps } from 'recompose'
 import theme from 'src/theme'
+import useIsMobile from 'src/util/hooks/useIsMobile'
 import Body from '../fonts/Body'
 import { FlexColumn } from '../layouts/Flex'
 import Space from '../layouts/Space'
@@ -15,26 +16,30 @@ const MapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap
-)(({ lat, lng }) => (
-  <FlexColumn>
-    <GoogleMap
-      defaultZoom={16}
-      defaultCenter={{ lat, lng }}
-      options={{ mapTypeControl: false, streetViewControl: false }}>
-      <Circle
-        defaultCenter={{
-          lat: lat,
-          lng: lng,
-        }}
-        radius={200}
-        options={{
-          strokeColor: theme.brand300,
-          fillColor: theme.brand100,
-        }}
-      />
-    </GoogleMap>
-  </FlexColumn>
-))
+)(({ lat, lng }) => {
+  const isMobile = useIsMobile()
+
+  return (
+    <FlexColumn>
+      <GoogleMap
+        defaultZoom={isMobile ? 15 : 16}
+        defaultCenter={{ lat, lng }}
+        options={{ mapTypeControl: false, streetViewControl: false, gestureHandling: 'greedy' }}>
+        <Circle
+          defaultCenter={{
+            lat: lat,
+            lng: lng,
+          }}
+          radius={120}
+          options={{
+            strokeColor: theme.brand300,
+            fillColor: theme.brand100,
+          }}
+        />
+      </GoogleMap>
+    </FlexColumn>
+  )
+})
 
 const Map = ({ lat, lng }) => (
   <FlexColumn alignCenter>
