@@ -76,7 +76,10 @@ const AddrInput = ({ formik, name, label }) => {
                   <LoadingDots />
                 ) : (
                   suggestions.map((suggestion) => (
-                    <Suggestion {...getSuggestionItemProps(suggestion)} active={suggestion.active}>
+                    <Suggestion
+                      key={suggestion.description}
+                      {...getSuggestionItemProps(suggestion)}
+                      active={suggestion.active}>
                       <Body ellipsis>{suggestion.description}</Body>
                     </Suggestion>
                   ))
