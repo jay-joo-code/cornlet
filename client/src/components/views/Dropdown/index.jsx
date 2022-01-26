@@ -29,7 +29,7 @@ const Dropdown = ({ show, setShow, children, alignLeft, alignRight, alignTop, ..
         {...rest}>
         {children}
       </Container>
-      {show && <Overlay onClick={handleOverlayClick} />}
+      {show ? <Overlay onClick={handleOverlayClick} /> : null}
     </>
   )
 }

@@ -9,29 +9,7 @@ import LoadingDots from '../displays/LoadingDots'
 import Dropdown from '../views/Dropdown'
 import Body from '../fonts/Body'
 import ErrMsg from '../fonts/ErrMsg'
-
-export const Container = styled.div`
-  width: 100%;
-`
-
-export const DropdownContainer = styled.div`
-  position: relative;
-  margin-top: 6px;
-`
-
-const DropdownContent = styled.div`
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-`
-
-export const Suggestion = styled.div`
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-
-  // active
-  background: ${(props) => (props.active ? 'rgba(0, 0, 0, .1)' : '')};
-`
+import ListingLocation from '../displays/ListingLocation'
 
 const AddrInput = ({ formik, name, label }) => {
   const [loaded, error] = useScript(
@@ -72,8 +50,18 @@ const AddrInput = ({ formik, name, label }) => {
     <PlacesAutocomplete value={formik.values[name]} onChange={handleChange} onSelect={handleSelect}>
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <Container>
-          <Input formik={formik} name={name} label={label} {...getInputProps({})} />
-          {formik.values.toCampus && <Body muted>{formik.values.toCampus} km to campus</Body>}
+          <Input
+            formik={formik}
+            name={name}
+            label={label}
+            {...getInputProps({})}
+            autoComplete='off'
+          />
+          <ListingLocation
+            lat={formik.values.lat}
+            lng={formik.values.lng}
+            toCampus={formik.values.toCampus}
+          />
           <ErrMsg formik={formik} name='toCampus' />
           <DropdownContainer>
             <Dropdown
@@ -84,12 +72,15 @@ const AddrInput = ({ formik, name, label }) => {
               alignLeft
               alignTop>
               <DropdownContent>
-                {loading && <LoadingDots />}
-                {suggestions.map((suggestion) => (
-                  <Suggestion {...getSuggestionItemProps(suggestion)} active={suggestion.active}>
-                    <Body ellipsis>{suggestion.description}</Body>
-                  </Suggestion>
-                ))}
+                {loading ? (
+                  <LoadingDots />
+                ) : (
+                  suggestions.map((suggestion) => (
+                    <Suggestion {...getSuggestionItemProps(suggestion)} active={suggestion.active}>
+                      <Body ellipsis>{suggestion.description}</Body>
+                    </Suggestion>
+                  ))
+                )}
               </DropdownContent>
             </Dropdown>
           </DropdownContainer>
@@ -98,5 +89,28 @@ const AddrInput = ({ formik, name, label }) => {
     </PlacesAutocomplete>
   )
 }
+
+const Container = styled.div`
+  width: 100%;
+`
+
+const DropdownContainer = styled.div`
+  position: relative;
+  margin-top: 6px;
+`
+
+const DropdownContent = styled.div`
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+`
+
+const Suggestion = styled.div`
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+
+  // active
+  background: ${(props) => (props.active ? 'rgba(0, 0, 0, .1)' : '')};
+`
 
 export default AddrInput
