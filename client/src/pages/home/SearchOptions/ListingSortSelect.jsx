@@ -1,15 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
-import Body from 'src/components/fonts/Body'
 import Select from 'src/components/inputs/Select'
 import useRouter from 'src/util/hooks/useRouter'
+import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
   align-items: center;
 `
 
-const SortBy = () => {
+const ListingSortSelect = () => {
   const router = useRouter()
   const { query, updateQuery } = router
 
@@ -43,4 +42,4 @@ const SortBy = () => {
   )
 }
 
-export default SortBy
+export default ListingSortSelect
