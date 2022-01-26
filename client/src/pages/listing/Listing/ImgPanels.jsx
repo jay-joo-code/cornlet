@@ -18,7 +18,7 @@ const ImgPanels = ({ imgs }) => {
 
   return (
     <>
-      <Container>
+      <Container onClick={() => setIsModalOpen(true)}>
         <MainPanel>
           <MainPanelInner>
             <Img src={imgs[0]} />
@@ -35,7 +35,7 @@ const ImgPanels = ({ imgs }) => {
           <SidePanelInner>
             {imgs[4] ? <Img src={imgs[4]} /> : <NoImgComponent />}
             <ShowAllArea>
-              <ShowAllBtn onClick={() => setIsModalOpen(true)}>Show all photos</ShowAllBtn>
+              <ShowAllBtn>Show all photos</ShowAllBtn>
             </ShowAllArea>
           </SidePanelInner>
         </SidePanel>
@@ -51,6 +51,7 @@ const Container = styled.div`
   overflow: hidden;
   display: flex;
   height: 500px;
+  cursor: pointer;
 `
 
 const MainPanel = styled.div`
