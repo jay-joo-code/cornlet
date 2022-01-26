@@ -31,8 +31,8 @@ const LargeView = styled.div`
 `
 
 const LargeImg = styled.img`
-  width: 50vw;
-  height: 60vh;
+  width: 60vw;
+  height: 40vw;
   border-radius: 20px;
   object-fit: cover;
   overflow: hidden;
@@ -40,21 +40,23 @@ const LargeImg = styled.img`
 
 const ScrollView = styled.div`
   overflow-y: auto;
-  height: 60vh;
+  overflow-x: hidden;
+  height: 40vw;
   display: flex;
   flex-direction: column;
-  padding-right: 1.5rem;
+  padding-right: 0.5rem;
 `
 
 const ThumbnailImg = styled.img`
-  height: 15vh;
+  height: 10vw;
   flex-shrink: 0;
-  width: 10vw;
+  width: 12vw;
   overflow: hidden;
   border-radius: 10px;
   object-fit: cover;
   margin-bottom: 1rem;
   cursor: pointer;
+  border: 2px solid ${(props) => props.theme.border.default};
 `
 
 export default ImgModal

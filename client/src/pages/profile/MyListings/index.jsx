@@ -5,7 +5,7 @@ import Body from 'src/components/fonts/Body'
 import { useSelector } from 'react-redux'
 import MainHeader from 'src/components/headers/MainHeader'
 import Navbar from 'src/components/headers/Navbar'
-import Listings from './Listings'
+import MyListingsList from './MyListingsList'
 import { FlexRow } from 'src/components/layouts/Flex'
 import Btn from 'src/components/buttons/Btn'
 import Space from 'src/components/layouts/Space'
@@ -51,7 +51,7 @@ const MyListings = () => {
         )}
       </div>
       <Space margin='2rem 0' />
-      <Listings uid={user.uid} setHasListings={setHasListings} />
+      <MyListingsList uid={user.uid} setHasListings={setHasListings} />
     </Container>
   )
 }

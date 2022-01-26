@@ -7,49 +7,24 @@ import api from 'src/util/api'
 import formatListingDesc from 'src/util/helpers/formatListingDesc'
 import getDateString from 'src/util/helpers/getDateString'
 import getFromNowDate from 'src/util/helpers/getFromNowDate'
-import getRegion from 'src/util/helpers/getRegion'
+import useFilters from 'src/util/hooks/useFilters'
+import useIsMobile from 'src/util/hooks/useIsMobile'
 import styled from 'styled-components'
 import BadgeV2 from '../displays/BadgeV2'
+import ListingLocation from '../displays/ListingLocation'
 import Searchers from '../displays/Searchers'
 import Body from '../fonts/Body'
 import Text from '../fonts/Text'
 import { FlexRow } from '../layouts/Flex'
-import kmToMins from 'src/util/helpers/kmToMins'
-import useIsDesktop from 'src/util/hooks/useIsDesktop'
-import useFilters from 'src/util/hooks/useFilters'
 
 const ListingCardV2 = ({ listing }) => {
   const [searchers, setSearchers] = useState([])
-  const [region, setRegion] = useState({})
-  const [isDistanceFiltered, setIsDistanceFiltered] = useState(false)
-  const isDesktop = useIsDesktop()
-  const filters = useFilters()
-
-  useEffect(() => {
-    let hasDistance = false
-    filters.forEach(({ type }) => {
-      if (type === 'distance') {
-        hasDistance = true
-      }
-    })
-
-    if (hasDistance) {
-      setIsDistanceFiltered(true)
-    } else {
-      setIsDistanceFiltered(false)
-    }
-  }, [filters])
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if (listing._id) {
       api.get(`/chatroom/listing/searchers/${listing._id}`).then((res) => {
         setSearchers(res.data)
-        setRegion(
-          getRegion({
-            lat: listing.lat,
-            lng: listing.lng,
-          })
-        )
       })
     }
   }, [listing._id])
@@ -67,14 +42,12 @@ const ListingCardV2 = ({ listing }) => {
           <Space margin='0 .5rem' />
           <TextContainer>
             <div>
-              <OverlineContainer>
-                <BadgeV2 color={region.color} background={region.background} label={region.label} />
-                {(isDesktop || isDistanceFiltered) && (
-                  <Overline>
-                    • {kmToMins(listing.toCampus)} mins {isDesktop && 'from campus'}
-                  </Overline>
-                )}
-              </OverlineContainer>
+              <ListingLocation
+                lat={listing.lat}
+                lng={listing.lng}
+                toCampus={listing.toCampus}
+                isShowMins={!isMobile}
+              />
               <Title>{formatListingDesc(listing)}</Title>
               <Space padding='.3rem 0' />
               <div>
@@ -136,7 +109,7 @@ const Container = styled.div`
 
 const CornerBtnContainer = styled.div`
   position: absolute;
-  top: 0.5rem;
+  top: 0.8rem;
   right: 0rem;
   z-index: 2;
   cursor: pointer;

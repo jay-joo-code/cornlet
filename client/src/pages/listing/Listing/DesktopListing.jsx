@@ -20,6 +20,7 @@ import styled from 'styled-components'
 import IconsSection from './IconsSection'
 import ImgPanels from './ImgPanels'
 import RightSidePanel from './RightSidePanel'
+import ListingLocation from 'src/components/displays/ListingLocation'
 
 const DesktopListing = ({
   listing,
@@ -88,7 +89,13 @@ const DesktopListing = ({
                   <Section>
                     <Subheading bold>Location</Subheading>
                     <Space margin='1.5rem 0' />
-                    {toCampus && <Body>{kmToMins(toCampus)} mins from campus</Body>}
+                    {toCampus && (
+                      <ListingLocation
+                        lat={listing.lat}
+                        lng={listing.lng}
+                        toCampus={listing.toCampus}
+                      />
+                    )}
                     <Space margin='1.5rem 0' />
                     {lat && lng && (
                       <div>

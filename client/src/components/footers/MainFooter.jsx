@@ -42,10 +42,10 @@ const MobileFooter = ({ matched }) => (
     <Text variant='h5' color={theme.textLight}>
       contactcornlet@gmail.com
     </Text>
-    <Space padding='.5rem 0' />
+    {/* <Space padding='.5rem 0' />
     <Text variant='h5' color={theme.textLight}>
       Built with ❤️ by Jay
-    </Text>
+    </Text> */}
     {matched && matched.isExact && <Space margin='6rem 0' />}
   </FooterContainer>
 )
@@ -80,7 +80,7 @@ const MainFooter = () => {
       <FlexRow justifySpaceBetween alignCenter>
         <Logo isDark />
         {/* <Text variant='h5'>Built with ❤️ by <JayLink href='https://www.linkedin.com/in/jay-joo-341191135/' target="_blank">Jay</JayLink></Text> */}
-        <Text variant='h5'>Built with ❤️ by Jay</Text>
+        {/* <Text variant='h5'>Built with ❤️ by Jay</Text> */}
       </FlexRow>
       <FlexRow justifyEnd>
         <FlexColumn alignEnd>

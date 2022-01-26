@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import SortBy from './SortBy'
+import ListingSortSelect from './ListingSortSelect'
 import Filters from './Filters'
 
 const SearchOptions = () => {
@@ -8,7 +8,7 @@ const SearchOptions = () => {
     <Wrapper>
       <Container>
         <Filters />
-        <SortBy />
+        <ListingSortSelect />
       </Container>
     </Wrapper>
   )

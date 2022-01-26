@@ -7,6 +7,7 @@ import Btn from 'src/components/buttons/Btn'
 import DetailedAvatar from 'src/components/displays/DetailedAvatar'
 import ImgCarousel from 'src/components/displays/ImgCarousel'
 import InfoBox from 'src/components/displays/InfoBox'
+import ListingLocation from 'src/components/displays/ListingLocation'
 import Map from 'src/components/displays/Map'
 import PolicyDisclaimer from 'src/components/displays/PolicyDisclaimer'
 import Searchers from 'src/components/displays/Searchers'
@@ -244,7 +245,11 @@ const Listing = ({ listing, searchers }) => {
                   </Row>
                   {toCampus && (
                     <Row>
-                      <Body>{kmToMins(toCampus)} mins from campus</Body>
+                      <ListingLocation
+                        lat={listing.lat}
+                        lng={listing.lng}
+                        toCampus={listing.toCampus}
+                      />
                     </Row>
                   )}
                   <Row marginBottom />
@@ -386,6 +391,9 @@ const Row = styled.div`
 
   // icon
   justify-content: ${(props) => (props.icon ? 'flex-start' : '')};
+
+  /* alignStart */
+  align-items: ${(props) => props.alignStart && `flex-start`};
 `
 
 const MapContainer = styled.div`

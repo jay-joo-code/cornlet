@@ -81,7 +81,7 @@ const BmBtn = ({ listing, forceDesktopSize }) => {
 const Container = styled.div`
   border-radius: 50%;
   cursor: pointer;
-  z-index: 99;
+  z-index: 49;
 `
 
 const StyledUnfilledBmIcon = styled(UnfilledBmIcon)`
