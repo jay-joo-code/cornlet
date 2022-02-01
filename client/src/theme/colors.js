@@ -40,13 +40,26 @@ const theme = {
   textPlaceholder: '#D3D7DB',
 
   // brand
-  brand: '#B31B1B',
+  brand: {
+    '25': '#FBF2F2',
+    '50': '#f6e4e4',
+    '100': '#e8bbbb',
+    '200': '#d98d8d',
+    '300': '#ca5f5f',
+    '400': '#be3d3d',
+    '500': '#b31b1b',
+    '600': '#ac1818',
+    '700': '#a31414',
+    '800': '#9a1010',
+    '900': '#8b0808',
+  },
   brandLight: '#D98D8D',
   brandDark: '#5A0E0E',
   brandBg: '#F4DFDF',
 
   brand500: '#B31B1B',
   brand300: '#C65454',
+  brand100: '#D98D8D',
   brand100: '#D98D8D',
   brand50: '#F9ECEC',
 

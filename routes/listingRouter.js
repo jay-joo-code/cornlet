@@ -1,12 +1,27 @@
 const listingRouter = require("express").Router();
 const moment = require("moment");
+const mongoose = require("mongoose");
 const minsToKm = require("../util/minsToKm");
 const Listing = require("../models/Listing");
+const User = require("../models/User");
 
 listingRouter.post("/create", async (req, res) => {
   try {
     const result = await new Listing(req.body).save();
     res.send(result);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
+listingRouter.post("/:id/increment-view", async (req, res) => {
+  try {
+    if (req.params.id) {
+      const listing = await Listing.findById(req.params.id);
+      listing.views += 1;
+      await listing.save();
+    }
+    res.send({ succcess: true });
   } catch (e) {
     res.status(500).send(e);
   }
@@ -109,6 +124,19 @@ listingRouter.get("/:id", async (req, res) => {
   try {
     const doc = await Listing.findById(req.params.id);
     res.send(doc.toObject({ virtuals: true }));
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
+listingRouter.get("/:id/stats", async (req, res) => {
+  try {
+    const users = await User.find({
+      "bm.listings": req.params.id,
+    });
+    res.send({
+      bmCount: users ? users.length : 0,
+    });
   } catch (e) {
     res.status(500).send(e);
   }
