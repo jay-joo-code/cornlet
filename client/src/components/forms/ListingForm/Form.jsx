@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -13,6 +13,8 @@ import Body from 'src/components/fonts/Body'
 import FormContents from './FormContents'
 import PolicyDisclaimer from 'src/components/displays/PolicyDisclaimer'
 import signin from 'src/util/helpers/signin'
+import debounce from 'just-debounce-it'
+import Snackbar from 'src/components/displays/Snackbar'
 
 const Form = styled.form`
   @media (min-width: ${(props) => props.theme.md}px) {
@@ -85,7 +87,6 @@ const FormComponent = ({ user, initialValues }) => {
   const handleClose = () => {
     setModal(false)
   }
-  const [showPrompt, setShowPrompt] = useState(true)
 
   // define form
   const formik = useFormik({
@@ -103,24 +104,16 @@ const FormComponent = ({ user, initialValues }) => {
       sold: Yup.boolean().required('Required'),
       cornellOnly: Yup.boolean().required('Required'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       if (initialValues) {
-        api
-          .put(`/listing/${initialValues._id}/update`, values)
-          .then(() => {
-            history.push('/profile')
-          })
-          .catch((e) => log('ERROR ListingForm update', e))
+        // update listing
+        await api.put(`/listing/${initialValues._id}/update`, values)
       } else if (user) {
-        api
-          .post('/listing/create', { ...values, user })
-          .then(() => {
-            history.push('/profile/listings')
-          })
-          .catch(({ response }) => {
-            log('ERROR new listing submit form', response)
-          })
+        // create new listing
+        await api.post('/listing/create', { ...values, user })
+        history.push('/profile/listings')
       } else {
+        // save form values, redirect to login
         dispatch({
           type: 'TEMP_VALUES_SET',
           payload: values,
@@ -132,6 +125,56 @@ const FormComponent = ({ user, initialValues }) => {
     },
   })
 
+  // auto save
+  const [lastSaved, setLastSaved] = React.useState(null)
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
+
+  const formatSaveTime = (date) => {
+    if (!date) return ''
+
+    let hours = date.getHours()
+    const ampm = hours >= 12 ? 'pm' : 'am'
+    hours = hours % 12
+    hours = hours ? hours : 12
+
+    let minutes = date.getMinutes()
+    minutes = minutes < 10 ? '0' + minutes : minutes
+
+    const strTime = hours + ':' + minutes + ' ' + ampm
+    return strTime
+  }
+
+  const debouncedSubmit = React.useCallback(
+    debounce(
+      () =>
+        formik.submitForm().then(() => {
+          setLastSaved(new Date())
+        }),
+      500
+    ),
+    [formik.submitForm]
+  )
+
+  useEffect(() => {
+    if (initialValues && user) {
+      debouncedSubmit()
+    }
+  }, [debouncedSubmit, formik.values])
+
+  useEffect(() => {
+    if (lastSaved) {
+      setIsSnackbarOpen(true)
+    }
+  }, [lastSaved])
+
+  // error on submit
+  const hasErrors = Object.keys(formik.errors).length !== 0
+  const handleSubmitAttempt = () => {
+    if (hasErrors) {
+      setModal(true)
+    }
+  }
+
   if (tempValues && user) {
     api
       .post('/listing/create', { ...tempValues, user })
@@ -140,7 +183,6 @@ const FormComponent = ({ user, initialValues }) => {
           type: 'TEMP_VALUES_SET',
           payload: null,
         })
-        setShowPrompt(false)
         router.history.push('/profile/listings')
       })
       .catch((e) => {
@@ -149,39 +191,30 @@ const FormComponent = ({ user, initialValues }) => {
     return <div>Creating listing...</div>
   }
 
-  // error on submit
-  const hasErrors = Object.keys(formik.errors).length !== 0
-  const handleSubmitAttempt = () => {
-    if (hasErrors) {
-      setModal(true)
-    } else {
-      setShowPrompt(false)
-    }
-  }
-
   return (
-    <Form onSubmit={formik.handleSubmit}>
-      <Prompt
-        when={showPrompt}
-        message={() =>
-          'Are you sure you wish to leave without saving?\nChanges will not be saved!\nClick the "Save" button at the bottom of the page to save.'
-        }
+    <>
+      <Form onSubmit={formik.handleSubmit}>
+        <FormContents formik={formik} user={user} />
+        <PolicyDisclaimer action='saving listings on Cornlet' />
+        <Center>
+          <Btn color='primary' inverted type='submit' onClick={handleSubmitAttempt}>
+            Save Listing
+          </Btn>
+        </Center>
+        <Modal open={modal} handleClose={handleClose} heading='Oops!' contentPadding>
+          <Body>There were errors in the form.</Body>
+          <Body>Please fix the errors before saving the listing.</Body>
+          <Btn color='primary' inverted onClick={handleClose}>
+            Go back
+          </Btn>
+        </Modal>
+      </Form>
+      <Snackbar
+        message={`Autosaved at ${formatSaveTime(lastSaved)}`}
+        isOpen={isSnackbarOpen}
+        setIsOpen={setIsSnackbarOpen}
       />
-      <FormContents formik={formik} user={user} />
-      <PolicyDisclaimer action='saving listings on Cornlet' />
-      <Center>
-        <Btn color='primary' inverted type='submit' onClick={handleSubmitAttempt}>
-          Save Listing
-        </Btn>
-      </Center>
-      <Modal open={modal} handleClose={handleClose} heading='Oops!' contentPadding>
-        <Body>There were errors in the form.</Body>
-        <Body>Please fix the errors before saving the listing.</Body>
-        <Btn color='primary' inverted onClick={handleClose}>
-          Go back
-        </Btn>
-      </Modal>
-    </Form>
+    </>
   )
 }
 
