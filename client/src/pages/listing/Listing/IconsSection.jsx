@@ -27,8 +27,7 @@ const IconsSection = ({ listing }) => {
           <TextContainer>
             <IconLabel>{bathrooms} bathrooms</IconLabel>
             <IconDesc>
-              0.5 bathrooms means a "half bathroom" with just a toilet and sink, with no tub or
-              shower.
+              0.5 bathrooms is a "half bathroom" with just a toilet and sink, with no tub or shower.
             </IconDesc>
           </TextContainer>
         </FlexRow>
