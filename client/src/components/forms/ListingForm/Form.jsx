@@ -172,6 +172,8 @@ const FormComponent = ({ user, initialValues }) => {
   const handleSubmitAttempt = () => {
     if (hasErrors) {
       setModal(true)
+    } else if (initialValues && user) {
+      router.push('/profile/listings')
     }
   }
 
