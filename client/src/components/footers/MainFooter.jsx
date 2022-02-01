@@ -19,7 +19,7 @@ const FooterContainer = styled.div`
 
 const JayLink = styled.a`
   text-decoration: underline;
-  color: ${(props) => props.theme.brand};
+  color: ${(props) => props.theme.brand[500]};
   font-weight: 400;
 `
 

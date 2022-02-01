@@ -1,13 +1,34 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const Text = ({ variant = 'p', children, ...rest }) => {
+  switch (variant) {
+    case 'h1':
+      return <H1 {...rest}>{children}</H1>
+    case 'h2':
+      return <H2 {...rest}>{children}</H2>
+    case 'h3':
+      return <H3 {...rest}>{children}</H3>
+    case 'h4':
+      return <H4 {...rest}>{children}</H4>
+    case 'h5':
+      return <H5 {...rest}>{children}</H5>
+    case 'h6':
+      return <H6 {...rest}>{children}</H6>
+    case 'h7':
+      return <H7 {...rest}>{children}</H7>
+    case 'p':
+      return <P {...rest}>{children}</P>
+  }
+}
+
 const CoreText = styled.p`
   color: ${(props) => props.theme.text};
   white-space: pre-line;
   word-break: break-word;
   font-weight: 400;
   line-height: 1.5;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 
   // ellipsis
   text-overflow: ${(props) => (props.ellipsis ? 'ellipsis' : '')};
@@ -18,16 +39,16 @@ const CoreText = styled.p`
   white-space: ${(props) => (props.nowrap ? 'nowrap' : '')};
 
   // color
-  color: ${(props) => (props.color && props.color)};
+  color: ${(props) => props.color && props.color};
 
   // fontWeight
-  font-weight: ${(props) => (props.fontWeight && props.fontWeight)};
+  font-weight: ${(props) => props.fontWeight && props.fontWeight};
 
   // maxWidth
   max-width: ${(props) => (props.maxWidth ? `${props.maxWidth}px` : '')};
 
   // margin
-  margin: ${(props) => props.margin ? props.margin : ''};
+  margin: ${(props) => (props.margin ? props.margin : '')};
 
   // uppercase
   text-transform: ${(props) => props.uppercase && 'uppercase'};
@@ -74,6 +95,10 @@ const P = styled(CoreText)`
 
 const H5 = styled(CoreText)`
   font-size: 14px;
+
+  @media (min-width: ${(props) => props.theme.medium}) {
+    font-size: 16px;
+  }
 `
 
 const H6 = styled(CoreText)`
@@ -83,42 +108,5 @@ const H6 = styled(CoreText)`
 const H7 = styled(CoreText)`
   font-size: 11px;
 `
-
-const Text = ({ variant, children, ...rest }) => {
-  switch (variant) {
-    case 'h1':
-      return (
-        <H1 {...rest}>{children}</H1>
-      )
-    case 'h2':
-      return (
-        <H2 {...rest}>{children}</H2>
-      )
-    case 'h3':
-      return (
-        <H3 {...rest}>{children}</H3>
-      )
-    case 'h4':
-      return (
-        <H4 {...rest}>{children}</H4>
-      )
-    case 'h5':
-      return (
-        <H5 {...rest}>{children}</H5>
-      )
-    case 'h6':
-      return (
-        <H6 {...rest}>{children}</H6>
-      )
-    case 'h7':
-      return (
-        <H7 {...rest}>{children}</H7>
-      )
-    case 'p':
-      return (
-        <P {...rest}>{children}</P>
-      )
-  }
-}
 
 export default Text

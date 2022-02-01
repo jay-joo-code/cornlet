@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
-const formatDate = require('../util/formatDate');
+const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
+const formatDate = require("../util/formatDate");
 
 const { Schema } = mongoose;
 
@@ -25,7 +25,7 @@ const listingSchema = Schema({
   type: {
     type: String,
     required: true,
-    default: '',
+    default: "",
   },
   totalRooms: {
     type: Number,
@@ -132,9 +132,15 @@ const listingSchema = Schema({
     required: true,
     default: new Date(),
   },
+  views: {
+    type: Number,
+    default: 0,
+  },
 });
 
-listingSchema.virtual('dateString').get(() => `${formatDate(this.start)} ~ ${formatDate(this.end)}`);
+listingSchema
+  .virtual("dateString")
+  .get(() => `${formatDate(this.start)} ~ ${formatDate(this.end)}`);
 
 listingSchema.plugin(mongoosePaginate);
-module.exports = mongoose.model('Listing', listingSchema);
+module.exports = mongoose.model("Listing", listingSchema);
