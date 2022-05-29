@@ -8,10 +8,12 @@ import formatListingDesc from 'src/util/helpers/formatListingDesc'
 import getDateString from 'src/util/helpers/getDateString'
 import getFromNowDate from 'src/util/helpers/getFromNowDate'
 import getShortAddr from 'src/util/helpers/getShortAddr'
+import kmToMins from 'src/util/helpers/kmToMins'
 import useFilters from 'src/util/hooks/useFilters'
 import useIsMobile from 'src/util/hooks/useIsMobile'
 import styled from 'styled-components'
 import BadgeV2 from '../displays/BadgeV2'
+import ImgCarousel from '../displays/ImgCarousel'
 import ListingLocation from '../displays/ListingLocation'
 import Searchers from '../displays/Searchers'
 import Body from '../fonts/Body'
@@ -38,14 +40,16 @@ const ListingVertCard = ({ listing }) => {
             <CornerBtnContainer>
               <BmBtn listing={listing} />
             </CornerBtnContainer>
+            {/* TODO: blocked, solve image loading issue */}
+            {/* <ImgCarousel imgs={listing.imgs} /> */}
             <Img src={listing.imgs[listing.thumbnailIdx || 0]} faded={listing.sold} />
+          </ImgContainer>
+          <TextContainer>
             {searchers && searchers.length > 0 && (
               <SearchersContainer>
                 <Searchers searchers={searchers} isBrief isLarge />
               </SearchersContainer>
             )}
-          </ImgContainer>
-          <TextContainer>
             {/* <ListingLocation
                 lat={listing.lat}
                 lng={listing.lng}
@@ -58,7 +62,7 @@ const ListingVertCard = ({ listing }) => {
               </Text>
               <div>
                 {listing.sold && (
-                  <BadgeV2 color={theme.brand.gradient} background={theme.brand50} label='Sold' />
+                  <BadgeV2 color={theme.brand[500]} background={theme.brand50} label='Sold' />
                 )}
               </div>
             </FlexContainer>
@@ -186,19 +190,18 @@ const Overline = styled.span`
 `
 
 const SearchersContainer = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 7px;
-  /* bottom: 7px; */
   left: 10px;
   z-index: 2;
   background: white;
   border-radius: 20px;
   padding-left: 0.5rem;
   padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
+  padding-bottom: 0.1rem; */
 
-  /* margin-top: 0.2rem;
-  margin-bottom: 0.4rem; */
+  margin-top: 0.2rem;
+  margin-bottom: 0.4rem;
 
   & p {
     /* color: ${(props) => props.theme.textMuted}; */

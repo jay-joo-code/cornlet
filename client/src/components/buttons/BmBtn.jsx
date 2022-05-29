@@ -29,8 +29,10 @@ const BmBtn = ({ listing, forceDesktopSize }) => {
   }
 
   const dispatch = useDispatch()
-  const toggleBm = async () => {
+  const toggleBm = async (event) => {
     try {
+      event.preventDefault()
+      event.stopPropagation()
       const addListingToBm = !isBmed
       const type = addListingToBm ? 'BM_ADD' : 'BM_REMOVE'
 
@@ -103,7 +105,7 @@ const StyledFilledBmIcon = styled(FilledBmIcon)`
   height: 1rem;
   width: 1rem;
   cursor: pointer;
-  fill: ${(props) => props.theme.brand500};
+  fill: ${(props) => props.theme.brand[500]};
 
   /* forceDesktopSize */
   height: ${(props) => props.forceDesktopSize && '1.5rem'};

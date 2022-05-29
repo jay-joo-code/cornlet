@@ -75,7 +75,7 @@ const FilterCounter = styled.div`
   font-weight: 500;
 
   border-radius: 50%;
-  background: ${(props) => props.theme.brand500};
+  background: ${(props) => props.theme.brand[500]};
   color: white;
 
   display: flex;

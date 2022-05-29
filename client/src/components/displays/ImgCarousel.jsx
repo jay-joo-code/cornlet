@@ -45,11 +45,12 @@ const ImgCarousel = ({ imgs }) => {
 
 const Container = styled.div`
   & .slick-dots {
-    bottom: 15px;
+    bottom: 40px;
   }
 
   & .slick-dots li {
     margin: 0;
+    width: 12px;
   }
 
   & .slick-dots li button {
@@ -57,13 +58,13 @@ const Container = styled.div`
   }
 
   & .slick-dots li button:before {
-    opacity: 0.8;
-    color: white;
-    font-size: 10px;
+    opacity: 0.6;
+    color: ${(props) => props.theme.grey[700]};
+    font-size: 6px;
   }
 
   & .slick-dots li.slick-active button:before {
-    color: ${(props) => props.theme.grey[700]};
+    color: white;
   }
 `
 
