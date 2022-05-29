@@ -50,7 +50,7 @@ const StatusBadge = styled.div`
 
 const BadgeText = styled.p`
   font-weight: 500;
-  color: ${(props) => props.theme.brand[500]};
+  color: ${(props) => props.theme.brand.gradient};
   font-size: 0.9rem;
   padding-top: 0.1rem;
 `

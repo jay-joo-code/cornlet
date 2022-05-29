@@ -52,6 +52,7 @@ const theme = {
     '700': '#a31414',
     '800': '#9a1010',
     '900': '#8b0808',
+    gradient: 'linear-gradient(131.44deg, #FF5B63 -5.27%, #FC9163 115.64%)',
   },
   brandLight: '#D98D8D',
   brandDark: '#5A0E0E',

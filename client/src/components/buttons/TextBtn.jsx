@@ -9,7 +9,7 @@ const StyledTextBtn = styled.button`
   font-weight: 500;
   font-size: 0.9rem;
 
-  color: ${(props) => props.theme.brand[500]};
+  color: ${(props) => props.theme.brand.gradient};
   background: ${(props) => props.theme.brand[25]};
 
   padding: 0.6rem 0.9rem;

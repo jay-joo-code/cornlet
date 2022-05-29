@@ -5,7 +5,7 @@ import { ReactComponent as LogoRaw } from 'src/assets/svgs/logo.svg'
 const LogoSVG = styled(LogoRaw)`
   height: 3rem;
   cursor: pointer;
-  fill: ${(props) => props.theme.brand[500]};
+  fill: ${(props) => props.theme.brand.gradient};
 
   // isDark
   fill: ${(props) => props.isDark && props.theme.grey[500]};

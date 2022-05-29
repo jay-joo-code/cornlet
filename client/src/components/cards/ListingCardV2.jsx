@@ -52,7 +52,7 @@ const ListingCardV2 = ({ listing }) => {
               <Space padding='.3rem 0' />
               <div>
                 {listing.sold ? (
-                  <BadgeV2 color={theme.brand[500]} background={theme.brand50} label='Sold' />
+                  <BadgeV2 color={theme.brand.gradient} background={theme.brand50} label='Sold' />
                 ) : (
                   <BadgeV2
                     color={theme.text}

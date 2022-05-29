@@ -63,7 +63,7 @@ const ListingInfo = ({ listing, isShowingClose, onCloseClick, isHideDates }) => 
         <Space margin='.5rem 0' />
         <div>
           {sold ? (
-            <BadgeV2 color={theme.brand[500]} background={theme.brand50} label='Sold' />
+            <BadgeV2 color={theme.brand.gradient} background={theme.brand50} label='Sold' />
           ) : (
             <FlexRow justifySpaceBetween alignCenter>
               <div>

@@ -18,7 +18,7 @@ const Button = styled.button`
 
   border-radius: 8px;
   box-shadow: ${(props) => props.theme.shadow};
-  background: ${(props) => props.theme.brand[500]};
+  background: ${(props) => props.theme.brand.gradient};
   color: white;
   letter-spacing: 0.6px;
 

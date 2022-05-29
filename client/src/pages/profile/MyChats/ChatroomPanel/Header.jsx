@@ -85,7 +85,7 @@ const Header = ({ chatroom }) => {
           <RenderOn mobile>
             <Space margin='1rem 0' />
             <Link to={`/listing/${chatroom.listing._id}`}>
-              <InvertedBtn color={theme.brand[500]}>View listing</InvertedBtn>
+              <InvertedBtn color={theme.brand.gradient}>View listing</InvertedBtn>
             </Link>
           </RenderOn>
         </div>
