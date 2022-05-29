@@ -38,6 +38,9 @@ const CoreText = styled.p`
   // nowrap
   white-space: ${(props) => (props.nowrap ? 'nowrap' : '')};
 
+  // bold
+  font-weight: ${(props) => (props.bold ? 'bold' : '')};
+
   // color
   color: ${(props) => props.color && props.color};
 
@@ -59,6 +62,9 @@ const CoreText = styled.p`
   display: ${(props) => props.maxLines && '-webkit-box'};
   -webkit-line-clamp: ${(props) => props.maxLines && props.maxLines};
   -webkit-box-orient: ${(props) => props.maxLines && 'vertical'};
+
+  // muted
+  color: ${(props) => props.muted && props.theme.textMuted};
 `
 
 const H1 = styled(CoreText)`

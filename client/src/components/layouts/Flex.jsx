@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const FlexElement = styled.div`
   display: flex;
@@ -38,5 +38,6 @@ export const FlexColumn = styled(FlexElement)`
   flex-direction: column;
 `
 
-export const FlexRow = styled(FlexElement)`
-`
+export const FlexRow = styled(FlexElement)``
+
+export const FlexContainer = styled(FlexElement)``

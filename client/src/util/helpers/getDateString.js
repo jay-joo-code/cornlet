@@ -1,12 +1,20 @@
 import formatDate from 'src/util/helpers/formatDate'
 import getNumericDate from './getNumericDate'
 
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
 const getDateString = (listing, options = {}) => {
   const { start, end } = listing
-  const { isNumeric } = options
+  const { isNumeric, isAbbrev } = options
 
   if (isNumeric) {
     return `${getNumericDate(start)} - ${getNumericDate(end)}`
+  } else if (isAbbrev) {
+    const startDate = new Date(start)
+    const endDate = new Date(end)
+    return `${months[startDate.getMonth()]} ${startDate.getDate()} - ${
+      months[endDate.getMonth()]
+    } ${endDate.getDate()}`
   }
 
   const startYear =

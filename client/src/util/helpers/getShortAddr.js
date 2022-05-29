@@ -1,5 +1,5 @@
 const getShortAddr = (addr) => {
-	return addr.split(', Ithaca')[0]
+  return addr.split(', NY')[0]
 }
 
-export default getShortAddr;
+export default getShortAddr
