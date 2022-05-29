@@ -39,6 +39,11 @@ const ListingVertCard = ({ listing }) => {
               <BmBtn listing={listing} />
             </CornerBtnContainer>
             <Img src={listing.imgs[listing.thumbnailIdx || 0]} faded={listing.sold} />
+            {searchers && searchers.length > 0 && (
+              <SearchersContainer>
+                <Searchers searchers={searchers} isBrief isLarge />
+              </SearchersContainer>
+            )}
           </ImgContainer>
           <TextContainer>
             {/* <ListingLocation
@@ -68,24 +73,20 @@ const ListingVertCard = ({ listing }) => {
                   />
                 )}
               </div> */}
+            <Text variant='h5' muted>
+              {getDateString(listing, { isAbbrev: true })}
+            </Text>
             <FlexContainer justifySpaceBetween fullWidth>
-              <Text variant='h5' muted>
-                {getDateString(listing, { isAbbrev: true })}
-              </Text>
+              <StatsContainer>
+                <Text variant='h5' muted>
+                  {getFromNowDate(listing.updatedAt, { isUpdateString: true })}
+                </Text>
+              </StatsContainer>
               <Text variant='h5'>
                 <span style={{ fontWeight: 500 }}>${listing.price} </span>
                 <span style={{ opacity: 0.6 }}>month</span>
               </Text>
-              {/* <StatsContainer>
-                <Text variant='h6' muted>
-                Updated {getFromNowDate(listing.updatedAt)}
-                </Text>
-              </StatsContainer> */}
             </FlexContainer>
-            <Space y={0.2} />
-            <SearchersContainer>
-              <Searchers searchers={searchers} isBrief />
-            </SearchersContainer>
           </TextContainer>
         </Container>
       </Link>
@@ -123,8 +124,7 @@ const ImgContainer = styled.div`
   position: relative;
   width: 100%;
   height: 220px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
   overflow: hidden;
   flex-grow: 0;
   flex-shrink: 0;
@@ -186,13 +186,30 @@ const Overline = styled.span`
 `
 
 const SearchersContainer = styled.div`
-  /* position: absolute;
-  bottom: 10px;
+  position: absolute;
+  top: 7px;
+  /* bottom: 7px; */
   left: 10px;
-  z-index: 2; */
+  z-index: 2;
+  background: white;
+  border-radius: 20px;
+  padding-left: 0.5rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+
+  /* margin-top: 0.2rem;
+  margin-bottom: 0.4rem; */
 
   & p {
-    color: ${(props) => props.theme.textMuted};
+    /* color: ${(props) => props.theme.textMuted}; */
+    /* color: white;
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: black; */
+  }
+
+  & > div {
+    padding-left: 0.4rem;
+    padding-right: 0.2rem;
   }
 `
 

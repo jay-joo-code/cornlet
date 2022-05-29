@@ -12,9 +12,11 @@ const getDateString = (listing, options = {}) => {
   } else if (isAbbrev) {
     const startDate = new Date(start)
     const endDate = new Date(end)
+    const endYearString =
+      endDate.getFullYear() !== new Date().getFullYear() ? `, ${endDate.getFullYear()}` : ''
     return `${months[startDate.getMonth()]} ${startDate.getDate()} - ${
       months[endDate.getMonth()]
-    } ${endDate.getDate()}`
+    } ${endDate.getDate()}${endYearString}`
   }
 
   const startYear =
