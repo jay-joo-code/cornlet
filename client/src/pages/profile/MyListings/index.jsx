@@ -9,7 +9,7 @@ import MyListingsList from './MyListingsList'
 import { FlexRow } from 'src/components/layouts/Flex'
 import Btn from 'src/components/buttons/Btn'
 import Space from 'src/components/layouts/Space'
-import useIsDesktop from 'src/util/hooks/useIsDesktop'
+import useIsDesktop from 'src/hooks/useIsDesktop'
 import { Link } from 'react-router-dom'
 import { ReactComponent as PlusIcon } from 'src/assets/svgs/plus.svg'
 

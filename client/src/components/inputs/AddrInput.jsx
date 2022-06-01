@@ -1,6 +1,6 @@
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-import useScript from 'src/util/hooks/useScript'
+import useScript from 'src/hooks/useScript'
 import Input from 'src/components/inputs/Input'
 import styled from 'styled-components'
 import calcDistance from 'src/util/helpers/calcDistance'

@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'src/components/inputs/Select'
-import useRouter from 'src/util/hooks/useRouter'
+import useRouter from 'src/hooks/useRouter'
 import styled from 'styled-components'
 
 const Container = styled.div`

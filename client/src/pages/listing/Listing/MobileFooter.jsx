@@ -4,7 +4,7 @@ import Btn from 'src/components/buttons/Btn'
 import Text from 'src/components/fonts/Text'
 import { FlexRow } from 'src/components/layouts/Flex'
 import Space from 'src/components/layouts/Space'
-import useIsDesktop from 'src/util/hooks/useIsDesktop'
+import useIsDesktop from 'src/hooks/useIsDesktop'
 import styled from 'styled-components'
 
 const MobileFooter = ({ listing, handleMsgBtnClick }) => {

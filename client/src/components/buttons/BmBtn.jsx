@@ -8,7 +8,7 @@ import { ReactComponent as BmFilledRaw } from 'src/assets/svgs/bookmark-filled.s
 import { ReactComponent as UnfilledBmIcon } from 'src/assets/svgs/bookmark.svg'
 import { ReactComponent as FilledBmIcon } from 'src/assets/svgs/bookmark-filled.svg'
 import ClickableIcon from '../displays/ClickableIcon'
-import useIsDesktop from 'src/util/hooks/useIsDesktop'
+import useIsDesktop from 'src/hooks/useIsDesktop'
 
 const BmBtn = ({ listing, forceDesktopSize }) => {
   const bm = useSelector((state) => state.bm)

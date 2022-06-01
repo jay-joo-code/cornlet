@@ -4,7 +4,7 @@ import { ReactComponent as LeftArrowRaw } from 'src/assets/svgs/left-arrow.svg'
 import { useHistory } from 'react-router-dom'
 import Body from 'src/components/fonts/Body'
 import Space from 'src/components/layouts/Space'
-import useRouter from 'src/util/hooks/useRouter'
+import useRouter from 'src/hooks/useRouter'
 
 const BackHeader = ({ to, fullwidth, label }) => {
   const history = useHistory()

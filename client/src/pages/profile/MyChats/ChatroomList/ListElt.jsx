@@ -6,8 +6,8 @@ import CornerRedDot from 'src/components/displays/CornerRedDot'
 import Body from 'src/components/fonts/Body'
 import getFromNowDate from 'src/util/helpers/getFromNowDate'
 import getShortAddr from 'src/util/helpers/getShortAddr'
-import useChatOtherUser from 'src/util/hooks/useChatOtherUser'
-import useRouter from 'src/util/hooks/useRouter'
+import useChatOtherUser from 'src/hooks/useChatOtherUser'
+import useRouter from 'src/hooks/useRouter'
 import styled from 'styled-components'
 
 const ListElt = ({ chatroom }) => {

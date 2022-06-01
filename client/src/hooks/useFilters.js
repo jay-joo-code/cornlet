@@ -1,4 +1,4 @@
-import getNumericDate from '../helpers/getNumericDate'
+import getNumericDate from '../util/helpers/getNumericDate'
 import useRouter from './useRouter'
 
 const useFilters = () => {

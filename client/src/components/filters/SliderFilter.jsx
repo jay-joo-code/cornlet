@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import useRouter from 'src/util/hooks/useRouter'
+import useRouter from 'src/hooks/useRouter'
 import Slider from '@material-ui/core/Slider'
 import { FlexRow } from '../layouts/Flex'
 import Text from '../fonts/Text'

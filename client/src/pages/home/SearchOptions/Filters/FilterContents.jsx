@@ -8,7 +8,7 @@ import theme from 'src/theme'
 import Space from 'src/components/layouts/Space'
 import Btn from 'src/components/buttons/Btn'
 import TextBtn from 'src/components/buttons/TextBtn'
-import useRouter from 'src/util/hooks/useRouter'
+import useRouter from 'src/hooks/useRouter'
 import Text from 'src/components/fonts/Text'
 
 const FilterContents = ({ setShow }) => {

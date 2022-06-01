@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import getRegion from 'src/util/helpers/getRegion'
 import kmToMins from 'src/util/helpers/kmToMins'
-import useIsDesktop from 'src/util/hooks/useIsDesktop'
+import useIsDesktop from 'src/hooks/useIsDesktop'
 import styled from 'styled-components'
 import BadgeV2 from '../displays/BadgeV2'
 

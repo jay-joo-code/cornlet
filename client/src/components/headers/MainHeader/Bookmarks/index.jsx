@@ -4,7 +4,7 @@ import { ReactComponent as BMIconRaw } from 'src/assets/svgs/bookmark.svg'
 import ClickableIcon from 'src/components/displays/ClickableIcon'
 import CornerRedDot from 'src/components/displays/CornerRedDot'
 import api from 'src/util/api'
-import useRouter from 'src/util/hooks/useRouter'
+import useRouter from 'src/hooks/useRouter'
 import log from 'src/util/log'
 import styled from 'styled-components'
 

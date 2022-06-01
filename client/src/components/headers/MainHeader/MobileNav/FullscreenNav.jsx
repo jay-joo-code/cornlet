@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import useRouter from 'src/util/hooks/useRouter'
+import useRouter from 'src/hooks/useRouter'
 import { useSelector } from 'react-redux'
 import signin from 'src/util/helpers/signin'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
-import useUnreadChatrooms from 'src/util/hooks/useUnreadChatrooms'
+import useUnreadChatrooms from 'src/hooks/useUnreadChatrooms'
 import NotifCounter from 'src/components/displays/NotifCounter'
 import { ReactComponent as CloseRaw } from 'src/assets/svgs/close.svg'
 

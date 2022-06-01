@@ -3,8 +3,8 @@ import { ReactComponent as CloseRaw } from 'src/assets/svgs/close.svg'
 import InvertedBtn from 'src/components/buttons/InvertedBtn'
 import IconContainer from 'src/components/displays/IconContainer'
 import Space from 'src/components/layouts/Space'
-import useFilters from 'src/util/hooks/useFilters'
-import useIsDesktop from 'src/util/hooks/useIsDesktop'
+import useFilters from 'src/hooks/useFilters'
+import useIsDesktop from 'src/hooks/useIsDesktop'
 import styled from 'styled-components'
 
 const FilterStatus = () => {
