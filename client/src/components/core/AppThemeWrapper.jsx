@@ -1,10 +1,11 @@
-import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import theme from 'src/theme';
-import AppReduxWrapper from './AppReduxWrapper';
+import React from 'react'
+import { QueryCache, QueryClient, QueryClientProvider } from 'react-query'
+import styled, { ThemeProvider } from 'styled-components'
+import theme from 'src/theme'
+import AppReduxWrapper from './AppReduxWrapper'
 
-import 'src/theme/Normalise.css';
-import 'react-perfect-scrollbar/dist/css/styles.css';
+import 'src/theme/Normalise.css'
+import 'react-perfect-scrollbar/dist/css/styles.css'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -12,27 +13,35 @@ const Wrapper = styled.div`
   background-color: white;
   display: flex;
   justify-content: center;
-`;
+`
 
 const Container = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
   @media (min-width: ${(props) => props.theme.md}px) {
     max-width: 1565px;
   }
-`;
+`
 
-const AppThemeWrapper = () => (
-  <ThemeProvider theme={theme}>
-    <Wrapper>
-      <Container>
-        <AppReduxWrapper />
-      </Container>
-    </Wrapper>
-  </ThemeProvider>
-);
+export const queryCache = new QueryCache()
 
-export default AppThemeWrapper;
+const AppThemeWrapper = () => {
+  const queryClient = new QueryClient()
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <Wrapper>
+          <Container>
+            <AppReduxWrapper />
+          </Container>
+        </Wrapper>
+      </ThemeProvider>
+    </QueryClientProvider>
+  )
+}
+
+export default AppThemeWrapper

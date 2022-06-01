@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import BmBtn from 'src/components/buttons/BmBtn'
 import Space from 'src/components/layouts/Space'
 import theme from 'src/theme'
-import api from 'src/util/api'
 import formatListingDesc from 'src/util/helpers/formatListingDesc'
 import getDateString from 'src/util/helpers/getDateString'
 import getFromNowDate from 'src/util/helpers/getFromNowDate'
@@ -16,18 +15,11 @@ import Searchers from '../displays/Searchers'
 import Body from '../fonts/Body'
 import Text from '../fonts/Text'
 import { FlexRow } from '../layouts/Flex'
+import { useSearchers } from 'src/api/searcher'
 
 const ListingCardV2 = ({ listing }) => {
-  const [searchers, setSearchers] = useState([])
   const isMobile = useIsMobile()
-
-  useEffect(() => {
-    if (listing._id) {
-      api.get(`/chatroom/listing/searchers/${listing._id}`).then((res) => {
-        setSearchers(res.data)
-      })
-    }
-  }, [listing._id])
+  const { searchers } = useSearchers({ listingId: listing._id })
 
   return (
     <Wrapper>

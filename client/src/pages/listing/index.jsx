@@ -3,20 +3,22 @@ import styled from 'styled-components'
 import api from 'src/util/api'
 import log from 'src/util/log'
 import Listing from './Listing'
+import { useListingDetails } from 'src/api/listing'
 
 const Container = styled.div``
 
 const ListingIndex = ({ match }) => {
   const { id } = match.params
-  const [listing, setListing] = useState()
   const [searchers, setSearchers] = useState([])
+  // const [listing, setListing] = useState()
+  const { listing } = useListingDetails({ listingId: id })
 
   useEffect(() => {
     if (id) {
-      api
-        .get(`/listing/${id}`)
-        .then((res) => setListing(res.data))
-        .catch((e) => log('ERROR get listing at listing details page', e))
+      // api
+      //   .get(`/listing/${id}`)
+      //   .then((res) => setListing(res.data))
+      //   .catch((e) => log('ERROR get listing at listing details page', e))
 
       api
         .get(`/chatroom/listing/searchers/${id}`)

@@ -1,14 +1,15 @@
-import axios from 'axios';
-import log from 'src/util/log';
-import store from 'src/redux/store';
+import axios from 'axios'
+import log from 'src/util/log'
+import store from 'src/redux/store'
 
 const logout = () => {
-  axios.post('/api/user/logout')
+  axios
+    .post('/api/auth/logout')
     .then((res) => {
-      log('logout successful', res);
+      log('logout successful', res)
       store.dispatch({
         type: 'USER_SET',
-        payload: null
+        payload: null,
       })
     })
     .catch((e) => {
@@ -16,4 +17,4 @@ const logout = () => {
     })
 }
 
-export default logout;
+export default logout

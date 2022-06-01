@@ -1,36 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSearchers } from 'src/api/searcher'
 import BmBtn from 'src/components/buttons/BmBtn'
-import Space from 'src/components/layouts/Space'
+import useIsMobile from 'src/hooks/useIsMobile'
 import theme from 'src/theme'
-import api from 'src/util/api'
-import formatListingDesc from 'src/util/helpers/formatListingDesc'
 import getDateString from 'src/util/helpers/getDateString'
 import getFromNowDate from 'src/util/helpers/getFromNowDate'
 import getShortAddr from 'src/util/helpers/getShortAddr'
-import kmToMins from 'src/util/helpers/kmToMins'
-import useFilters from 'src/hooks/useFilters'
-import useIsMobile from 'src/hooks/useIsMobile'
 import styled from 'styled-components'
 import BadgeV2 from '../displays/BadgeV2'
-import ImgCarousel from '../displays/ImgCarousel'
-import ListingLocation from '../displays/ListingLocation'
 import Searchers from '../displays/Searchers'
 import Body from '../fonts/Body'
 import Text from '../fonts/Text'
-import { FlexContainer, FlexRow } from '../layouts/Flex'
+import { FlexContainer } from '../layouts/Flex'
 
 const ListingVertCard = ({ listing }) => {
-  const [searchers, setSearchers] = useState([])
   const isMobile = useIsMobile()
-
-  useEffect(() => {
-    if (listing._id) {
-      api.get(`/chatroom/listing/searchers/${listing._id}`).then((res) => {
-        setSearchers(res.data)
-      })
-    }
-  }, [listing._id])
+  const { searchers } = useSearchers({ listingId: listing._id })
 
   return (
     <Wrapper>

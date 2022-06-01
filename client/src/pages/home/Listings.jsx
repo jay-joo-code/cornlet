@@ -9,31 +9,20 @@ import useIsMobile from 'src/hooks/useIsMobile'
 import useRouter from 'src/hooks/useRouter'
 import log from 'src/util/log'
 import styled from 'styled-components'
+import { useListings } from 'src/api/listing'
 
 const Listings = () => {
   const router = useRouter()
-  const [listings, setListings] = useState([])
+  // const [listings, setListings] = useState([])
   const [loading, setLoading] = useState(false)
   const [totalPages, setTotalPages] = useState(1)
   const [page, setPage] = useState(1)
   const isMobile = useIsMobile()
+  const { listings } = useListings({
+    active: true,
+  })
 
-  useEffect(() => {
-    setLoading(true)
-    const connector = router.location.search ? '&' : '?'
-    api
-      .get(`/listing${router.location.search}${connector}active=true`)
-      .then((res) => {
-        setListings(res.data.docs)
-        setTotalPages(res.data.totalPages)
-        setPage(res.data.page)
-        setLoading(false)
-      })
-      .catch(({ response }) => {
-        log('ERROR get listings at home', { response })
-        setLoading(false)
-      })
-  }, [router])
+  // TODO: infinite scroll
 
   if (loading || !listings)
     return (

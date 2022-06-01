@@ -21,7 +21,7 @@ const Settings = () => {
   const dispatch = useDispatch()
   const handleSignOut = async () => {
     api
-      .get('/auth/signout')
+      .post('/auth/signout')
       .then(() => {
         router.history.push('/')
 

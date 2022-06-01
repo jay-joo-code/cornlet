@@ -1,6 +1,6 @@
-const chatroomRouter = require('express').Router();
-const Chatroom = require('../models/Chatroom');
-const User = require('../models/User');
+const chatroomRouter = require("express").Router();
+const Chatroom = require("../models/Chatroom");
+const User = require("../models/User");
 
 // const logChats = async () => {
 //   const chatrooms = await Chatroom.find();
@@ -12,11 +12,9 @@ const User = require('../models/User');
 //   });
 // };
 
-chatroomRouter.post('/create', async (req, res) => {
+chatroomRouter.post("/create", async (req, res) => {
   try {
-    const {
-      lid, msgContent, searcherUid, ownerUid,
-    } = req.body;
+    const { lid, msgContent, searcherUid, ownerUid } = req.body;
     const firstMsg = {
       content: msgContent,
       uid: searcherUid,
@@ -30,25 +28,27 @@ chatroomRouter.post('/create', async (req, res) => {
       msgs: [firstMsg],
     };
     const newChatroom = await new Chatroom(chatroomData).save();
-    const populatedChatroom = await newChatroom.populate('searcher listing').execPopulate();
+    const populatedChatroom = await newChatroom
+      .populate("searcher listing")
+      .execPopulate();
     res.send(populatedChatroom);
-  }
-  catch (e) {
+  } catch (e) {
     res.status(500).send(e);
   }
 });
 
-chatroomRouter.get('/user/:uid', async (req, res) => {
+chatroomRouter.get("/user/:uid", async (req, res) => {
   try {
-    const chatrooms = await Chatroom.find({ uids: req.params.uid }).populate('searcher listing').sort({ updatedAt: -1 });
+    const chatrooms = await Chatroom.find({ uids: req.params.uid })
+      .populate("searcher listing")
+      .sort({ updatedAt: -1 });
     res.send(chatrooms);
-  }
-  catch (e) {
+  } catch (e) {
     res.status(500).send(e);
   }
 });
 
-chatroomRouter.get('/listing/searchers/:lid', async (req, res) => {
+chatroomRouter.get("/listing/searchers/:lid", async (req, res) => {
   try {
     const chatrooms = await Chatroom.find({ listing: req.params.lid });
     const searcherPromises = chatrooms.map(async (chatroom) => {
@@ -57,21 +57,21 @@ chatroomRouter.get('/listing/searchers/:lid', async (req, res) => {
     });
     const searchers = await Promise.all(searcherPromises);
     res.send(searchers);
-  }
-  catch (e) {
+  } catch (e) {
     res.status(500).send(e);
   }
 });
 
-chatroomRouter.get('/:uid/:lid', async (req, res) => {
+chatroomRouter.get("/:uid/:lid", async (req, res) => {
   try {
-    const chatroom = await Chatroom.findOne({ uids: req.params.uid, listing: req.params.lid });
+    const chatroom = await Chatroom.findOne({
+      uids: req.params.uid,
+      listing: req.params.lid,
+    });
     res.send(chatroom);
-  }
-  catch (e) {
+  } catch (e) {
     res.status(500).send(e);
   }
 });
-
 
 module.exports = chatroomRouter;

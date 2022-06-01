@@ -15,6 +15,7 @@ import TextBtn from '../buttons/TextBtn'
 import BadgeV2 from '../displays/BadgeV2'
 import Text from '../fonts/Text'
 import { FlexRow } from '../layouts/Flex'
+import { useListingStats } from 'src/api/listing'
 
 const ListingHostCard = ({ listing }) => {
   const router = useRouter()
@@ -26,17 +27,17 @@ const ListingHostCard = ({ listing }) => {
   }
 
   // bmCount
-  const [setBmCount, setSetBmCount] = useState(0)
+  const { stats } = useListingStats({ listingId: listing._id })
 
-  useEffect(() => {
-    if (listing._id) {
-      api.get(`/listing/${listing._id}/stats`).then((res) => {
-        if (res && res.data) {
-          setSetBmCount(res.data.bmCount)
-        }
-      })
-    }
-  }, [listing._id])
+  // useEffect(() => {
+  //   if (listing._id) {
+  //     api.get(`/listing/${listing._id}/stats`).then((res) => {
+  //       if (res && res.data) {
+  //         setSetBmCount(res.data.bmCount)
+  //       }
+  //     })
+  //   }
+  // }, [listing._id])
 
   // sold toggle
   const [isSold, setIsSold] = useState(false)
@@ -65,7 +66,7 @@ const ListingHostCard = ({ listing }) => {
         <TextContainer>
           <Title>{listing.addr}</Title>
           <Text variant='h5'>
-            {listing.views} views • {setBmCount} bookmarks
+            {listing.views} views {stats && `• ${stats.bmCount} bookmarks`}
           </Text>
           <DateContainer>
             <BadgeV2

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useUserListings } from 'src/api/listing'
 import { ReactComponent as NoListingSVGRaw } from 'src/assets/illustrations/no-listings.svg'
 import PaginationBtns from 'src/components/buttons/PaginationBtns'
 import ListingCardV2 from 'src/components/cards/ListingCardV2'
@@ -14,28 +15,29 @@ import log from 'src/util/log'
 import styled from 'styled-components'
 
 const MyListingsList = ({ uid, setHasListings }) => {
-  const [listings, setListings] = useState([])
+  // const [listings, setListings] = useState([])
   const [loading, setLoading] = useState(false)
+  const { listings } = useUserListings({ uid })
 
-  const reload = () => {
-    setLoading(true)
-    api
-      .get(`/user/${uid}/listings`)
-      .then((res) => {
-        setListings(res.data)
-        setLoading(false)
-      })
-      .catch((e) => log('ERROR get mylistings', e))
-  }
+  // const reload = () => {
+  //   setLoading(true)
+  //   api
+  //     .get(`/user/${uid}/listings`)
+  //     .then((res) => {
+  //       setListings(res.data)
+  //       setLoading(false)
+  //     })
+  //     .catch((e) => log('ERROR get mylistings', e))
+  // }
+
+  // useEffect(() => {
+  //   if (uid) {
+  //     reload()
+  //   }
+  // }, [uid])
 
   useEffect(() => {
-    if (uid) {
-      reload()
-    }
-  }, [uid])
-
-  useEffect(() => {
-    if (listings.length > 0) setHasListings(true)
+    if (listings && listings.length > 0) setHasListings(true)
     else setHasListings(false)
   }, [listings, setHasListings])
 
@@ -43,9 +45,8 @@ const MyListingsList = ({ uid, setHasListings }) => {
     <Container>
       {loading && <LoadingDots />}
       <VertCardList>
-        {listings.map((listing) => (
-          <ListingHostCard key={listing._id} listing={listing} />
-        ))}
+        {listings &&
+          listings.map((listing) => <ListingHostCard key={listing._id} listing={listing} />)}
       </VertCardList>
 
       {/* no listings */}
