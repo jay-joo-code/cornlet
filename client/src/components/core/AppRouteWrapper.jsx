@@ -25,7 +25,11 @@ import SocketIO from './SocketIO'
 
 const AppRouter = () => {
   const user = useSelector((state) => state.user)
-  const bannedEmails = ['lily.d.pieramici042402@gmail.com', 'chiayuho2001@gmail.com']
+  const bannedEmails = [
+    'lily.d.pieramici042402@gmail.com',
+    'chiayuho2001@gmail.com',
+    'rolpz289974@gmail.com',
+  ]
 
   if (user && bannedEmails.includes(user.email)) {
     return null
