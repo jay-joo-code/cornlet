@@ -29,6 +29,7 @@ const AppRouter = () => {
     'lily.d.pieramici042402@gmail.com',
     'chiayuho2001@gmail.com',
     'rolpz289974@gmail.com',
+    'chiayuho162001@gmail.com',
   ]
 
   if (user && bannedEmails.includes(user.email)) {
