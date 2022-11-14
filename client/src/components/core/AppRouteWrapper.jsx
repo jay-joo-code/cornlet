@@ -34,7 +34,7 @@ const AppRouter = () => {
   ]
 
   if (
-    process.env.NODE_ENV === 'propduction' &&
+    process.env.NODE_ENV === 'production' &&
     user &&
     (bannedEmails.includes(user.email) || (user.email && user.email.includes('chiayuho')))
   ) {
