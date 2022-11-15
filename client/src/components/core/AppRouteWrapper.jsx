@@ -31,12 +31,14 @@ const AppRouter = () => {
     'rolpz289974@gmail.com',
     'chiayuho162001@gmail.com',
     'kmjeong130309574@gmail.com',
+    'prgmayorga1470@gmail.com',
   ]
 
   if (
     process.env.NODE_ENV === 'production' &&
     user &&
-    (bannedEmails.includes(user.email) || (user.email && user.email.includes('chiayuho')))
+    ((user.email && (bannedEmails.includes(user.email) || user.email.includes('chiayuho'))) ||
+      user.isBanned)
   ) {
     return null
   }
