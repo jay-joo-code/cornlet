@@ -73,5 +73,4 @@ chatroomRouter.get('/:uid/:lid', async (req, res) => {
   }
 });
 
-
 module.exports = chatroomRouter;
