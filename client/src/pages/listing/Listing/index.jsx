@@ -80,24 +80,38 @@ const Listing = ({ listing, searchers }) => {
   }
 
   const createMsg = () => {
-    // DB create
-    // DB must be created first to get the data schema
-    const reqData = {
-      lid: listing._id,
-      msgContent: tempValues || msg,
-      searcherUid: signedInUser.uid,
-      ownerUid: user.uid,
-    }
-    api
-      .post('/chatroom/create', reqData)
-      .then(({ data }) => {
-        // emit socket event
-        socket.emit('new chatroom', data)
+    const msgContent = tempValues || msg
 
-        // redirect
-        router.push(`/profile/chat/${data._id}`)
+    // spam prevention + pause user system
+    // TODO: relax the ban conditions when spammers don't come on cornlet anymore
+    if (msgContent.includes('@gmail.com')) {
+      api.put(`/user/${signedInUser._id}/ban`, {
+        firstMsgContent: msgContent,
       })
-      .catch(({ response }) => log('Listing', response))
+      dispatch({
+        type: 'USER_BAN',
+      })
+      window.location.reload()
+    } else {
+      // DB create
+      // DB must be created first to get the data schema
+      const reqData = {
+        lid: listing._id,
+        msgContent,
+        searcherUid: signedInUser.uid,
+        ownerUid: user.uid,
+      }
+      api
+        .post('/chatroom/create', reqData)
+        .then(({ data }) => {
+          // emit socket event
+          socket.emit('new chatroom', data)
+
+          // redirect
+          router.push(`/profile/chat/${data._id}`)
+        })
+        .catch(({ response }) => log('Listing', response))
+    }
   }
 
   const handleCreateMsg = () => {
