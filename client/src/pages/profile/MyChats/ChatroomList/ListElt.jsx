@@ -40,7 +40,9 @@ const ListElt = ({ chatroom }) => {
             <Row>
               <TextContainer maxWidth={160}>
                 <Body muted={hasNotif ? 0 : 1} ellipsis>
-                  {chatroom.msgs[chatroom.msgs.length - 1].content}
+                  {chatroom.searcher && chatroom.searcher.isBanned
+                    ? '- User banned -'
+                    : chatroom.msgs[chatroom.msgs.length - 1].content}
                 </Body>
               </TextContainer>
               <Body muted>{getFromNowDate(lastMsg.createdAt)}</Body>
