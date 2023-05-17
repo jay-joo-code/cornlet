@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "HTTPS=true && NODE_ENV=production && node app",
+    "start": "HTTPS=true && NODE_ENV=production && node --max-old-space-size=4096 app",
     "dev": "NODE_ENV=development run-p api-dev client-dev",
     "api-dev": "PORT=8081 nodemon app",
     "client-dev": "cd client && npm run-script dev",
