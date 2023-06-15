@@ -7,6 +7,7 @@ import RenderOn from 'src/containers/RenderOn'
 import socket from 'src/util/socket'
 import { useSelector } from 'react-redux'
 import Text from 'src/components/fonts/Text'
+import api from 'src/util/api'
 
 const HEIGHT = 84
 
@@ -17,7 +18,6 @@ const InputSection = ({ chatroom }) => {
   const lineHeight = 24
   const [rows, setRows] = useState(minRows)
   const user = useSelector((state) => state.user)
-  console.log('chatroom.searcher', chatroom.searcher)
 
   const handleChange = (event) => {
     // reset number of rows in textarea
@@ -53,6 +53,13 @@ const InputSection = ({ chatroom }) => {
       content: msg,
       uid: user.uid,
       createdAt: new Date(),
+    }
+
+    if (msg?.includes('@gmail.com')) {
+      api.post('/user/flag-msg', {
+        msg,
+        user,
+      })
     }
     socket.emit('msg', data)
   }

@@ -3,6 +3,7 @@ const Chatroom = require('../models/Chatroom');
 const Listing = require('../models/Listing');
 const User = require('../models/User');
 const sendBanNotifEmail = require('../util/sendBanNotifEmail');
+const sendFlagNotifEmail = require('../util/sendFlagNotifEmail');
 
 const logUsers = async () => {
   const chatrooms = await Chatroom.find();
@@ -130,8 +131,6 @@ userRouter.put('/:id/bm/:opr/:lid', async (req, res) => {
   }
 });
 
-// add or remove lid to uid's bookmarked listings
-// opr: add || remove
 userRouter.put('/:id/ban', async (req, res) => {
   try {
     const { id } = req.params;
@@ -142,6 +141,22 @@ userRouter.put('/:id/ban', async (req, res) => {
       bannedUserEmail: user.email,
       bannedUserName: user.name,
       firstMsgContent: req.body.firstMsgContent,
+    });
+    res.send(user);
+  }
+  catch (e) {
+    res.status(500).send(e);
+  }
+});
+
+userRouter.post('/flag-msg', async (req, res) => {
+  try {
+    const { msg, user } = req.body;
+    sendFlagNotifEmail({
+      msg,
+      bannedUserEmail: user.email,
+      bannedUserName: user.name,
+      bannedUserUid: user.uid,
     });
     res.send(user);
   }
