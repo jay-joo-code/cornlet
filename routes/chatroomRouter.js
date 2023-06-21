@@ -12,6 +12,24 @@ const User = require('../models/User');
 //   });
 // };
 
+chatroomRouter.get('/recent-chatroom-create-count/:uid', async (req, res) => {
+  try {
+    const now = new Date();
+    const twelveHoursAgo = new Date(now.getTime() - (12 * 60 * 60 * 1000));
+    const chatrooms = await Chatroom.find({
+      uids: req.params.uid,
+      createdAt: { $gte: twelveHoursAgo },
+    });
+    const count = chatrooms ? chatrooms.length : 0;
+    res.send({
+      recentlyCreatedChatrooms: count,
+    });
+  }
+  catch (e) {
+    res.status(500).send(e);
+  }
+});
+
 chatroomRouter.post('/create', async (req, res) => {
   try {
     const {

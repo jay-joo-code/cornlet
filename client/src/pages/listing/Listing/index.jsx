@@ -65,13 +65,26 @@ const Listing = ({ listing, searchers }) => {
   // create message modal
   const [open, setOpen] = useState(false)
   const [msg, setMsg] = useState('')
+  const [createChatroomError, setCreateChatroomError] = useState('')
+  const [isCreateChatroomDisabled, setIsCreateChatroomDisabled] = useState(false)
 
-  const handleMsgBtnClick = () => {
-    const existing = chatrooms.filter((chatroom) => chatroom.listing._id === listing._id)
-    if (existing.length !== 0) {
-      router.push(`/profile/chat/${existing[0]._id}`)
-    } else {
-      setOpen(true)
+  const handleMsgBtnClick = async () => {
+    if (signedInUser) {
+      const existing = chatrooms.filter((chatroom) => chatroom.listing._id === listing._id)
+      if (existing.length !== 0) {
+        router.push(`/profile/chat/${existing[0]._id}`)
+      } else {
+        const { data } = await api.get(`/chatroom/recent-chatroom-create-count/${signedInUser.uid}`)
+        const { recentlyCreatedChatrooms } = data
+
+        if (recentlyCreatedChatrooms > 6) {
+          setCreateChatroomError(
+            "You've created more than 6 chatrooms in the past 12 hours. Please check back after 12 hours to send more messages."
+          )
+          setIsCreateChatroomDisabled(true)
+        }
+        setOpen(true)
+      }
     }
   }
 
@@ -82,16 +95,11 @@ const Listing = ({ listing, searchers }) => {
   const createMsg = () => {
     const msgContent = tempValues || msg
 
-    // spam prevention + pause user system
-    // TODO: relax the ban conditions when spammers don't come on cornlet anymore
-    if (msgContent.includes('@gmail.com')) {
-      api.put(`/user/${signedInUser._id}/ban`, {
-        firstMsgContent: msgContent,
-      })
-      dispatch({
-        type: 'USER_BAN',
-      })
-      window.location.reload()
+    if (msgContent.includes('gmail') && msgContent.includes('@')) {
+      // prevent sending gmail address in the first message
+      setCreateChatroomError(
+        'Please do not include a Gmail address in your first message. This is to prevent spammers from sending phishing email links to Cornlet users.'
+      )
     } else {
       // DB create
       // DB must be created first to get the data schema
@@ -115,10 +123,9 @@ const Listing = ({ listing, searchers }) => {
   }
 
   const handleCreateMsg = () => {
-    handleClose()
-
     if (!signedInUser) {
       // not signed in, signin
+      handleClose()
       dispatch({
         type: 'TEMP_VALUES_SET',
         payload: msg,
@@ -173,6 +180,8 @@ const Listing = ({ listing, searchers }) => {
         msg={msg}
         setMsg={setMsg}
         handleCreateMsg={handleCreateMsg}
+        createChatroomError={createChatroomError}
+        isCreateChatroomDisabled={isCreateChatroomDisabled}
       />
     )
 
@@ -294,10 +303,17 @@ const Listing = ({ listing, searchers }) => {
         <ModalContents>
           <Input multiline rows={5} value={msg} onChange={(e) => setMsg(e.target.value)} />
           <ModalButtonContainer>
-            <Btn color='primary' inverted onClick={handleCreateMsg}>
+            <Btn
+              color='primary'
+              inverted
+              onClick={handleCreateMsg}
+              disabled={isCreateChatroomDisabled}>
               Send Message
             </Btn>
           </ModalButtonContainer>
+          {createChatroomError && (
+            <ModalCreateChatroomError>{createChatroomError}</ModalCreateChatroomError>
+          )}
           <PolicyDisclaimer action='sending a message on Cornlet' />
         </ModalContents>
       </Modal>
@@ -507,6 +523,15 @@ const ModalContents = styled.div`
 const ModalButtonContainer = styled(HoriCenter)`
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+`
+
+const ModalCreateChatroomError = styled.p`
+  color: ${(props) => props.theme.danger};
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  font-size: 0.875rem;
+  padding: 0 2rem;
 `
 
 export default Listing

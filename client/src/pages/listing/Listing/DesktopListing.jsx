@@ -32,6 +32,8 @@ const DesktopListing = ({
   msg,
   setMsg,
   handleCreateMsg,
+  createChatroomError,
+  isCreateChatroomDisabled,
 }) => {
   const {
     imgs,
@@ -128,10 +130,17 @@ const DesktopListing = ({
         <ModalContents>
           <Input multiline rows={10} value={msg} onChange={(e) => setMsg(e.target.value)} />
           <ModalButtonContainer>
-            <Btn color='primary' inverted onClick={handleCreateMsg}>
+            <Btn
+              color='primary'
+              inverted
+              onClick={handleCreateMsg}
+              disabled={isCreateChatroomDisabled}>
               Send Message
             </Btn>
           </ModalButtonContainer>
+          {createChatroomError && (
+            <ModalCreateChatroomError>{createChatroomError}</ModalCreateChatroomError>
+          )}
           <PolicyDisclaimer action='sending a message on Cornlet' />
         </ModalContents>
       </Modal>
@@ -194,6 +203,15 @@ const RightSidePanelContainer = styled.div`
 const ModalButtonContainer = styled(HoriCenter)`
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+`
+
+const ModalCreateChatroomError = styled.p`
+  color: ${(props) => props.theme.danger};
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  font-size: 0.875rem;
+  padding: 0 4rem;
 `
 
 export default DesktopListing
