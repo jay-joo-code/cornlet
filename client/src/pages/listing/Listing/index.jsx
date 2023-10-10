@@ -77,9 +77,9 @@ const Listing = ({ listing, searchers }) => {
         const { data } = await api.get(`/chatroom/recent-chatroom-create-count/${signedInUser.uid}`)
         const { recentlyCreatedChatrooms } = data
 
-        if (recentlyCreatedChatrooms > 6) {
+        if (recentlyCreatedChatrooms >= 2) {
           setCreateChatroomError(
-            "You've created more than 6 chatrooms in the past 12 hours. Please check back after 12 hours to send more messages."
+            "You've messaged 2 hosts in the past 12 hours. Please check back after 12 hours to message more hosts."
           )
           setIsCreateChatroomDisabled(true)
         }
