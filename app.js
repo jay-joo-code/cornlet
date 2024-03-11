@@ -13,7 +13,7 @@ const User = require('./models/User');
 require('dotenv').config();
 
 // MONGODB
-const forceProdDB = true;
+const forceProdDB = false;
 const isProdDb = forceProdDB
   || (process.env.NODE_ENV === 'production' && process.env.REACT_APP_DB_PROD);
 const URI = isProdDb
