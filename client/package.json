@@ -1,0 +1,53 @@
+{
+  "name": "cornlet-vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "axios": "^0.21.2",
+    "body-scroll-lock": "^3.0.2",
+    "compressorjs": "^1.0.6",
+    "formik": "^2.0.3",
+    "generate-password": "^1.4.2",
+    "just-debounce-it": "^3.0.1",
+    "react": "^16.10.2",
+    "react-datepicker": "^2.14.0",
+    "react-dom": "^16.10.2",
+    "react-google-maps": "^9.4.5",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-places-autocomplete": "^7.2.1",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-slick": "^0.25.2",
+    "recompose": "^0.30.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1",
+    "socket.io-client": "^2.3.0",
+    "source-map-explorer": "^2.4.2",
+    "styled-components": "^4.4.1",
+    "typescript": "^3.6.4",
+    "vite-plugin-svgr": "^4.2.0",
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "2.4.1",
+    "vite": "^5.1.6"
+  }
+}

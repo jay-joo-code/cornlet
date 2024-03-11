@@ -1,0 +1,15 @@
+.slick-prev {
+  left: 3%;
+  z-index: 10;
+  display: none !important;
+}
+.slick-next {
+  right: 3%;
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .slick-next .slick-prev {
+    display: block !important;
+  }
+}
