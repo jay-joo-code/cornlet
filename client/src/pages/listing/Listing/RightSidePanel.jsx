@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as LockRaw } from 'src/assets/svgs/lock.svg';
+import LockRaw from 'src/assets/svgs/lock.svg';
 import Btn from 'src/components/buttons/Btn';
 import Badge from 'src/components/displays/Badge';
 import DetailedAvatar from 'src/components/displays/DetailedAvatar';

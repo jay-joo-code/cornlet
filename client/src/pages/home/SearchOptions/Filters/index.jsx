@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ReactComponent as FilterRaw } from 'src/assets/svgs/filter.svg'
+import FilterRaw from 'src/assets/svgs/filter.svg'
 import Dropdown from 'src/components/views/Dropdown'
 import useFilters from 'src/util/hooks/useFilters'
 import styled from 'styled-components'

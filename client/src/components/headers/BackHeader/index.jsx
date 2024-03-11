@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ReactComponent as LeftArrowRaw } from 'src/assets/svgs/left-arrow.svg'
+import LeftArrowRaw from 'src/assets/svgs/left-arrow.svg'
 import { useHistory } from 'react-router-dom'
 import Body from 'src/components/fonts/Body'
 import Space from 'src/components/layouts/Space'

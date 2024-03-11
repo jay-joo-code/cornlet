@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ReactComponent as BMIconRaw } from 'src/assets/svgs/bookmark.svg'
+import BMIconRaw from 'src/assets/svgs/bookmark.svg'
 import ClickableIcon from 'src/components/displays/ClickableIcon'
 import CornerRedDot from 'src/components/displays/CornerRedDot'
 import api from 'src/util/api'

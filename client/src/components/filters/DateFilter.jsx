@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useRouter from 'src/util/hooks/useRouter';
 import formatDate from 'src/util/helpers/formatDate';
-import { ReactComponent as CalendarRaw } from 'src/assets/svgs/calendar.svg';
+import CalendarRaw from 'src/assets/svgs/calendar.svg';
 
 const Container = styled.div`
   position: relative;
@@ -22,7 +22,7 @@ const StyledPicker = styled(DatePicker)`
   border-radius: 3px;
   text-align: center;
   cursor: pointer;
-  
+
   width: 110px;
   background-color: inherit;
   color: ${props => props.theme.text};

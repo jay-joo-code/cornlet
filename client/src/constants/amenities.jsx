@@ -1,12 +1,12 @@
 import React from 'react';
-import { ReactComponent as WifiSVG } from 'src/assets/svgs/wifi.svg';
-import { ReactComponent as CarSVG } from 'src/assets/svgs/car.svg';
-import { ReactComponent as GymSVG } from 'src/assets/svgs/gym.svg';
-import { ReactComponent as HeaterSVG } from 'src/assets/svgs/heater.svg';
-import { ReactComponent as AirconSVG } from 'src/assets/svgs/snowflake.svg';
-import { ReactComponent as SofaSVG } from 'src/assets/svgs/sofa.svg';
-import { ReactComponent as UtilitiesSVG } from 'src/assets/svgs/utilities.svg';
-import { ReactComponent as BusSVG } from 'src/assets/svgs/bus.svg';
+import WifiSVG from 'src/assets/svgs/wifi.svg';
+import CarSVG from 'src/assets/svgs/car.svg';
+import GymSVG from 'src/assets/svgs/gym.svg';
+import HeaterSVG from 'src/assets/svgs/heater.svg';
+import AirconSVG from 'src/assets/svgs/snowflake.svg';
+import SofaSVG from 'src/assets/svgs/sofa.svg';
+import UtilitiesSVG from 'src/assets/svgs/utilities.svg';
+import BusSVG from 'src/assets/svgs/bus.svg';
 
 const amenities = [
   {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Eye } from 'src/assets/svgs/eye.svg';
+import Eye from 'src/assets/svgs/eye.svg';
 
 const Container = styled.div`
   display: flex;

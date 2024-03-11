@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ReactComponent as NoListingSVGRaw } from 'src/assets/illustrations/no-listings.svg'
+import NoListingSVGRaw from 'src/assets/illustrations/no-listings.svg'
 import PaginationBtns from 'src/components/buttons/PaginationBtns'
 import ListingCardV2 from 'src/components/cards/ListingCardV2'
 import ListingHostCard from 'src/components/cards/ListingHostCard'

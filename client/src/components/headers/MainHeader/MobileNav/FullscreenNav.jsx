@@ -6,7 +6,7 @@ import signin from 'src/util/helpers/signin'
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 import useUnreadChatrooms from 'src/util/hooks/useUnreadChatrooms'
 import NotifCounter from 'src/components/displays/NotifCounter'
-import { ReactComponent as CloseRaw } from 'src/assets/svgs/close.svg'
+import CloseRaw from 'src/assets/svgs/close.svg'
 
 const Container = styled.div`
   position: fixed;

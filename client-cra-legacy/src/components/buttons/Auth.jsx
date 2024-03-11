@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import { ReactComponent as Google } from 'src/assets/svgs/google.svg';
-import Avatar from 'src/components/displays/Avatar';
-import { useDispatch, useSelector } from 'react-redux';
-import Loading from 'src/components/displays/Loading';
-import signin from 'src/util/helpers/signin';
-import Body from '../fonts/Body';
+import React from 'react'
+import styled from 'styled-components'
+import Google from 'src/assets/svgs/google.svg'
+import Avatar from 'src/components/displays/Avatar'
+import { useDispatch, useSelector } from 'react-redux'
+import Loading from 'src/components/displays/Loading'
+import signin from 'src/util/helpers/signin'
+import Body from '../fonts/Body'
 
 const SignIn = styled(Google)`
   height: 30px;
@@ -15,28 +15,22 @@ const SignIn = styled(Google)`
   padding: .5rem;
   border-radius: 5px;
   cursor: pointer;
-`;
+`
 
-const Container = styled.div`
-
-`;
+const Container = styled.div``
 
 const Auth = ({ border }) => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user)
 
   if (user) {
-    return (
-      <Avatar
-        src={user.photo}
-        path="/profile"
-        border={border}
-      />
-    );
+    return <Avatar src={user.photo} path='/profile' border={border} />
   }
 
   return (
-    <Body bold pointer onClick={signin}>Sign in</Body>
-  );
-};
+    <Body bold pointer onClick={signin}>
+      Sign in
+    </Body>
+  )
+}
 
-export default Auth;
+export default Auth

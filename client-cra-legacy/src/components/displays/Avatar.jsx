@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { default as MaterialAvatar } from '@material-ui/core/Avatar'
-import { ReactComponent as AvatarIconRaw } from 'src/assets/svgs/avatar.svg'
+import AvatarIconRaw from 'src/assets/svgs/avatar.svg'
 
 const Avatar = ({ src, path, lg, sm, border, isLinked = true, ...rest }) => (
   <div>

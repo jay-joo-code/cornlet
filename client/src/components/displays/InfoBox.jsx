@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as WarningSVGRaw } from 'src/assets/svgs/warning.svg'
+import WarningSVGRaw from 'src/assets/svgs/warning.svg'
 import styled from 'styled-components'
 import Space from '../layouts/Space';
 

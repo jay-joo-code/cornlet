@@ -1,7 +1,7 @@
 import React from 'react'
-import { ReactComponent as WarningSVGRaw } from 'src/assets/svgs/warning.svg'
+import WarningSVGRaw from 'src/assets/svgs/warning.svg'
 import styled from 'styled-components'
-import Space from '../layouts/Space';
+import Space from '../layouts/Space'
 
 const Container = styled.div`
   display: flex;
@@ -13,8 +13,8 @@ const Container = styled.div`
 `
 
 const WarningSVG = styled(WarningSVGRaw)`
-  fill: ${props => props.theme.warning};
-`;
+  fill: ${(props) => props.theme.warning};
+`
 
 const InfoBox = ({ variant, children }) => {
   return (
