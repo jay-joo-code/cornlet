@@ -7,7 +7,7 @@ const Container = styled.div`
 
 const Env = () => (
   <Container>
-    {JSON.stringify(process.env)}
+    {JSON.stringify(import.meta.env)}
   </Container>
 );
 
