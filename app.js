@@ -15,9 +15,9 @@ require('dotenv').config();
 // MONGODB
 const forceProdDB = false;
 const isProdDb = forceProdDB
-  || (process.env.NODE_ENV === 'production' && process.env.REACT_APP_DB_PROD);
+  || (process.env.NODE_ENV === 'production' && process.env.VITE_DB_PROD);
 const URI = isProdDb
-  ? process.env.REACT_APP_DB_PROD
+  ? process.env.VITE_DB_PROD
   : process.env.DB_URI_DEV;
 
 mongoose.connect(URI, {
@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === 'production') {
 // PASSPORT
 app.use(
   session({
-    secret: process.env.REACT_APP_SESSION_SECRET,
+    secret: process.env.VITE_SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
