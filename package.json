@@ -48,6 +48,10 @@
     "throttle-debounce": "^2.1.0",
     "use-persisted-state": "^0.3.0"
   },
+  "engines": {
+    "npm": "8.1.0",
+    "node": "17.0.1"
+  },
   "devDependencies": {
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
