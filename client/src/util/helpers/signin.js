@@ -1,7 +1,7 @@
 import store from 'src/redux/store';
 
 const signin = (options) => {
-  const url = import.meta.env.NODE_ENV === 'development'
+  const url = import.meta.env.DEV
     ? 'http://localhost:8081/api/auth/google'
     : `${import.meta.env.VITE_CLIENT_DOMAIN}/api/auth/google`;
 

@@ -79,7 +79,7 @@ const FormComponent = ({ user, initialValues }) => {
   const dynInitValues =
     initialValues ||
     tempValues ||
-    (import.meta.env.NODE_ENV === 'development' && devValues) ||
+    (import.meta.env.DEV && devValues) ||
     defaultValues
 
   // error modal

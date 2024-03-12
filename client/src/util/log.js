@@ -1,5 +1,5 @@
 const log = (txt, data = null) => {
-  if (import.meta.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.log(txt, data);
   }
 };
