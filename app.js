@@ -15,9 +15,9 @@ require('dotenv').config();
 // MONGODB
 const forceProdDB = false;
 const isProdDb = forceProdDB
-  || (process.env.NODE_ENV === 'production' && process.env.VITE_DB_PROD);
+  || (process.env.NODE_ENV === 'production' && process.env.DB_URI_PROD);
 const URI = isProdDb
-  ? process.env.VITE_DB_PROD
+  ? process.env.DB_URI_PROD
   : process.env.DB_URI_DEV;
 
 mongoose.connect(URI, {
