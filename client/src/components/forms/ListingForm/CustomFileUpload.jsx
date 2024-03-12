@@ -2,15 +2,12 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import FileUpload from 'src/components/inputs/FileUpload'
 import ErrMsg from 'src/components/fonts/ErrMsg'
-import generator from 'generate-password'
 import CircleCross from 'src/components/buttons/CircleCross'
+import randomString from 'src/util/helpers/randomString'
 
 const CustomFileUpload = ({ formik, name, user }) => {
   const [newSrc, setNewSrc] = useState()
-  const random = generator.generate({
-    length: 16,
-    numbers: true,
-  })
+  const random = randomString()
 
   // add new image to formik
   useEffect(() => {
