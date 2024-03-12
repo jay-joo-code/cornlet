@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ReactComponent as UpRaw } from 'src/assets/svgs/up.svg';
+import UpRaw from 'src/assets/svgs/up.svg';
 import useIsDesktop from 'src/util/hooks/useIsDesktop';
 import useRouter from 'src/util/hooks/useRouter';
 import styled from 'styled-components';

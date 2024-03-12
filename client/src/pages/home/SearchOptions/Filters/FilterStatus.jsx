@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as CloseRaw } from 'src/assets/svgs/close.svg'
+import CloseRaw from 'src/assets/svgs/close.svg'
 import InvertedBtn from 'src/components/buttons/InvertedBtn'
 import IconContainer from 'src/components/displays/IconContainer'
 import Space from 'src/components/layouts/Space'

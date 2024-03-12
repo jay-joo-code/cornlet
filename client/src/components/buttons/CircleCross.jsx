@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as CrossRaw } from 'src/assets/svgs/close.svg';
+import CrossRaw from 'src/assets/svgs/close.svg';
 
 const Container = styled.div`
   background: white;
@@ -8,14 +8,14 @@ const Container = styled.div`
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
   cursor: pointer;
-  
+
   width: 24px;
   height: 24px;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   flex-grow: 0;
   flex-shrink: 0;
 `;
@@ -24,7 +24,7 @@ const Cross = styled(CrossRaw)`
   height: 10px;
   width: 10px;
   opacity: .6;
-  
+
   &:hover {
     opacity: .9;
   }

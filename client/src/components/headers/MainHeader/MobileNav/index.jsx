@@ -4,7 +4,7 @@ import Space from 'src/components/layouts/Space'
 import styled from 'styled-components'
 import Bookmarks from '../Bookmarks'
 import FullscreenNav from './FullscreenNav'
-import { ReactComponent as BurgerIcon } from 'src/assets/svgs/burger.svg'
+import BurgerIcon from 'src/assets/svgs/burger.svg'
 
 export const Wrapper = styled.div`
   display: flex;

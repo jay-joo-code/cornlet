@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { ReactComponent as NoBookmarksSVGRaw } from 'src/assets/illustrations/no-bookmarks.svg'
+import NoBookmarksSVGRaw from 'src/assets/illustrations/no-bookmarks.svg'
 import ListingCardV2 from 'src/components/cards/ListingCardV2'
 import Heading from 'src/components/fonts/Heading'
 import Text from 'src/components/fonts/Text'

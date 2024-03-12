@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as CloseRaw } from 'src/assets/svgs/close-material.svg'
+import CloseRaw from 'src/assets/svgs/close-material.svg'
 import theme from 'src/theme'
 import formatListingDesc from 'src/util/helpers/formatListingDesc'
 import getDateString from 'src/util/helpers/getDateString'

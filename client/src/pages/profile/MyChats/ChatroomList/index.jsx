@@ -7,7 +7,7 @@ import Space from 'src/components/layouts/Space'
 import theme from 'src/theme/colors'
 import styled from 'styled-components'
 import ListElt from './ListElt'
-import { ReactComponent as NoChatroomsSVGRaw } from 'src/assets/illustrations/no-chatrooms.svg'
+import NoChatroomsSVGRaw from 'src/assets/illustrations/no-chatrooms.svg'
 import api from 'src/util/api'
 import log from 'src/util/log'
 

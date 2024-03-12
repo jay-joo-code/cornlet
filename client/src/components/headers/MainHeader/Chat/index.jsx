@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { ReactComponent as ChatIcon } from 'src/assets/svgs/mail.svg'
+import ChatIcon from 'src/assets/svgs/mail.svg'
 import CornerRedDot from 'src/components/displays/CornerRedDot'
 import { Link } from 'react-router-dom'
 import Body from 'src/components/fonts/Body'

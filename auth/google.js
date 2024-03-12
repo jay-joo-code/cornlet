@@ -6,11 +6,11 @@ const Chatroom = require('../models/Chatroom');
 
 const ROOT_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:8081'
-  : process.env.REACT_APP_CLIENT_DOMAIN;
+  : process.env.VITE_CLIENT_DOMAIN;
 
 passport.use(new GoogleStrategy({
-  clientID: process.env.REACT_APP_CLIENT_ID,
-  clientSecret: process.env.REACT_APP_CLIENT_SECRET,
+  clientID: process.env.VITE_CLIENT_ID,
+  clientSecret: process.env.VITE_CLIENT_SECRET,
   callbackURL: `${ROOT_URL}/api/auth/google/callback`,
 },
 (async (accessToken, refreshToken, profile, done) => {

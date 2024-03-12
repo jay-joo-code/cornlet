@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
-const blacklist = process.env.NODE_ENV === 'development' ? [] : [];
+const blacklist = import.meta.env.DEV ? [] : [];
 
 const persistConfig = {
   key: 'root',
@@ -13,8 +13,8 @@ const persistConfig = {
   blacklist,
 }
 
-const middleware = process.env.REACT_APP_ENV !== 'production' ? [thunk, logger] : [thunk];
- 
+const middleware = import.meta.env.DEV ? [thunk, logger] : [thunk];
+
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 const store = createStore(persistedReducer, applyMiddleware(...middleware));
 

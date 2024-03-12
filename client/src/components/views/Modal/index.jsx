@@ -4,7 +4,7 @@ import MaterialModal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
 import styled from 'styled-components'
-import { ReactComponent as CloseRaw } from 'src/assets/svgs/close.svg'
+import CloseRaw from 'src/assets/svgs/close.svg'
 import Heading from 'src/components/fonts/Heading'
 
 const useStyles = makeStyles(() => ({

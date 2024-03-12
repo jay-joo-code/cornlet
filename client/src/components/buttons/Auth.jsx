@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Google } from 'src/assets/svgs/google.svg';
+import Google from 'src/assets/svgs/google.svg';
 import Avatar from 'src/components/displays/Avatar';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from 'src/components/displays/Loading';

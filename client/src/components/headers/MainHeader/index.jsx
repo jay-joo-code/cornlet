@@ -8,7 +8,7 @@ import useIsDesktop from 'src/util/hooks/useIsDesktop'
 import Bookmarks from './Bookmarks'
 import Chat from './Chat'
 import MobileNav from './MobileNav'
-import { ReactComponent as PlusIcon } from 'src/assets/svgs/plus.svg'
+import PlusIcon from 'src/assets/svgs/plus.svg'
 import ClickableIcon from 'src/components/displays/ClickableIcon'
 
 const MainHeader = () => {

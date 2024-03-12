@@ -1,7 +1,14 @@
 {
-  "name": "cornlet",
-  "version": "0.1.0",
+  "name": "cornlet-vite",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.11.2",
@@ -9,10 +16,9 @@
     "axios": "^0.21.2",
     "body-scroll-lock": "^3.0.2",
     "compressorjs": "^1.0.6",
+    "firebase": "^7.24.0",
     "formik": "^2.0.3",
-    "generate-password": "^1.4.2",
     "just-debounce-it": "^3.0.1",
-    "npm-run-all": "^4.1.5",
     "react": "^16.10.2",
     "react-datepicker": "^2.14.0",
     "react-dom": "^16.10.2",
@@ -21,7 +27,6 @@
     "react-places-autocomplete": "^7.2.1",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.1",
     "react-slick": "^0.25.2",
     "recompose": "^0.30.0",
     "redux": "^4.0.4",
@@ -33,45 +38,16 @@
     "source-map-explorer": "^2.4.2",
     "styled-components": "^4.4.1",
     "typescript": "^3.6.4",
+    "vite-plugin-svgr": "^4.2.0",
     "yup": "^0.27.0"
   },
-  "scripts": {
-    "start": "NODE_ENV=production && HTTPS=true && react-scripts start",
-    "dev": "NODE_ENV=development && PORT=8080 && react-scripts start",
-    "dev-alone": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint ./src --fix --ext .jsx",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
-  },
-  "engines": {
-    "npm": "8.1.0",
-    "node": "17.0.1"
-  },
-  "proxy": "http://localhost:8081",
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
-    "eslint": "^6.7.2",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "prettier": "2.4.1"
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "2.4.1",
+    "vite": "^5.1.6"
   }
 }

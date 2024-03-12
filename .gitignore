@@ -42,7 +42,7 @@ bower_components
 .lock-wscript
 
 # Dependency directories
-node_modules/
+node_modules
 .env
 
 # Optional npm cache directory
@@ -59,3 +59,5 @@ node_modules/
 
 # Yarn Integrity file
 .yarn-integrity
+
+dist
